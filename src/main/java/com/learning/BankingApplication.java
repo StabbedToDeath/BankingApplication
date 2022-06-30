@@ -1,13 +1,13 @@
-package com.cogent.spring;
+package com.learning;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class RestBankingProject01Application {
+public class BankingApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RestBankingProject01Application.class, args);
+		SpringApplication.run(BankingApplication.class, args);
 	}
 
 }

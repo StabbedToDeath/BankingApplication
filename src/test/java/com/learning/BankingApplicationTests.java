@@ -1,10 +1,10 @@
-package com.cogent.spring;
+package com.learning;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RestBankingProject01ApplicationTests {
+class BankingApplicationTests {
 
 	@Test
 	void contextLoads() {
