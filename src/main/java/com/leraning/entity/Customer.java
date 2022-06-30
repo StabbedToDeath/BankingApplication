@@ -1,9 +1,15 @@
 package com.leraning.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Entity;
 import org.springframework.data.annotation.Id;
 
 @Entity
@@ -15,6 +21,11 @@ public class Customer {
 	private String username;
 	private String fullname;
 	private String password;
+	
+	@OneToMany(cascade = CascadeType.ALL)						//PLEASE CHECK THIS
+	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="custId"))
+	List<Account> account;				
+	
 	public int getCustomerId() {
 		return customerId;
 	}
