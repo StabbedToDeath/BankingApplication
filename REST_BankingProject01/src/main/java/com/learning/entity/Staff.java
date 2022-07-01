@@ -21,7 +21,7 @@ public class Staff {
 	private String staffFullName;
 	private String staffUserName;
 	private String staffPassword;
-	private String staffName;				//?????
+	private String staffName;			
 	private Status status;
 	
 	
