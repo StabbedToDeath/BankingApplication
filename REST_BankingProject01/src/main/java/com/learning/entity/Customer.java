@@ -1,5 +1,6 @@
 package com.learning.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -29,6 +30,7 @@ public class Customer {
 	private String fullname;
 	private String password;
 	private Status status;
+	private Date created;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="custId"))
@@ -77,12 +79,19 @@ public class Customer {
 	public void addAccount(Account account) {
 		this.accounts.add(account);
 	}
+	public Date getCreated() {
+		return created;
+	}
+	public void setCreated(Date created) {
+		this.created = created;
+	}
 	public Customer(String username, String fullname, String password) {
 		super();
 		this.username = username;
 		this.fullname = fullname;
 		this.password = password;
 		this.status = Status.Enable;
+		this.created = new Date();
 	}
 	
 	
