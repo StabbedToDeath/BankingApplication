@@ -2,6 +2,8 @@ package com.learning.service;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.learning.entity.Customer;
@@ -28,14 +30,15 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public String deleteCustomer(int Customer) {
-		return null; //cRepo.deleteById(Customer);;
+	public String deleteCustomer(int customerId) {
+		cRepo.deleteById(customerId);
+		return "The account with the Id #"+customerId+" has been deleted"; //cRepo.deleteById(Customer);;
 	}
 
 	@Override
 	public List<Customer> getAllCustomer() {
-		// TODO Auto-generated method stub
-		return null;
+		return cRepo.findAll();
+		}
 	}
 
-}
+
