@@ -1,5 +1,7 @@
 package com.learning.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,28 +19,36 @@ public class Transaction {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int transactionId;
 	
-	
 	@OneToMany
 	@JoinTable(name = "transaction_account_tb1", joinColumns = @JoinColumn(name="fTransId"))
-	private int fromAccNumber;
-	private String transactionType;
+	private List<Account> fromAccNumber;
+	
 	@OneToMany
 	@JoinTable(name = "transaction_account_tb2", joinColumns = @JoinColumn(name="tTransId"))
-	private int toAccNumber;
+	private List<Account> toAccNumber;
+	
+
+	
+	private String transactionType;
 	private double amount;
 	private String reason;
 	private String date;
 	private String reference;
+
+	
+	
+	
+
 	public int getTransactionId() {
 		return transactionId;
 	}
 	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
 	}
-	public int getFromAccNumber() {
+	public List<Account> getFromAccNumber() {
 		return fromAccNumber;
 	}
-	public void setFromAccNumber(int fromAccNumber) {
+	public void setFromAccNumber(List<Account> fromAccNumber) {
 		this.fromAccNumber = fromAccNumber;
 	}
 	public String getTransactionType() {
@@ -47,10 +57,10 @@ public class Transaction {
 	public void setTransactionType(String transactionType) {
 		this.transactionType = transactionType;
 	}
-	public int getToAccNumber() {
+	public List<Account> getToAccNumber() {
 		return toAccNumber;
 	}
-	public void setToAccNumber(int toAccNumber) {
+	public void setToAccNumber(List<Account> toAccNumber) {
 		this.toAccNumber = toAccNumber;
 	}
 	public double getAmount() {
@@ -77,8 +87,6 @@ public class Transaction {
 	public void setReference(String reference) {
 		this.reference = reference;
 	}
-	
-
 	public Transaction(String transactionType, double amount, String reason, String date, String reference) {
 		super();
 		this.transactionType = transactionType;
