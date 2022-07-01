@@ -9,7 +9,7 @@ public interface CustomerService {
 	public Customer getCustomer(int customerId);
 	public Customer createCustomer(Customer customer);
 	public Customer updateCustomer(Customer customer);
-	public String deleteCustomer(int Customer);
+	public String deleteCustomer(int customerId);
 	public List<Customer> getAllCustomer();
 
 }
