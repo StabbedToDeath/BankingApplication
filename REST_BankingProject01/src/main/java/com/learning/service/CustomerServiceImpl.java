@@ -15,8 +15,8 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepo cRepo;
 	
 	@Override
-	public Customer getCustomer(int customerId) {
-		return cRepo.findById(customerId).get();
+	public Customer getCustomer(int id) {
+		return cRepo.findById(id).get();
 	}
 
 	@Override
@@ -30,9 +30,9 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public String deleteCustomer(int customerId) {
-		cRepo.deleteById(customerId);
-		return "The account with the Id #"+customerId+" has been deleted"; //cRepo.deleteById(Customer);;
+	public String deleteCustomer(int id) {
+		cRepo.deleteById(id);
+		return "The account with the Id #"+id+" has been deleted"; //cRepo.deleteById(Customer);;
 	}
 
 	@Override
