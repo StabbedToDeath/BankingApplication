@@ -19,7 +19,7 @@ public class Transaction {
 	
 	
 	@OneToMany
-	@JoinTable(name = "transaction_account_tb2", joinColumns = @JoinColumn(name="fTransId"))
+	@JoinTable(name = "transaction_account_tb1", joinColumns = @JoinColumn(name="fTransId"))
 	private int fromAccNumber;
 	private String transactionType;
 	@OneToMany
