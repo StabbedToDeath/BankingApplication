@@ -15,16 +15,24 @@ import org.springframework.data.annotation.Id;
 @Entity
 public class Customer {
 	
+	enum Status
+	{
+		Enable,
+		Disable
+	}
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customerId;
 	private String username;
 	private String fullname;
 	private String password;
+	private Status status;
 	
-	@OneToMany(cascade = CascadeType.ALL)						//PLEASE CHECK THIS
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="custId"))
-	List<Account> account;				
+	List<Account> accounts;				
 	
 	public int getCustomerId() {
 		return customerId;
@@ -54,11 +62,27 @@ public class Customer {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	public List<Account> getAccount() {
+		return accounts;
+	}
+	public void setAccount(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+	public void addAccount(Account account) {
+		this.accounts.add(account);
+	}
 	public Customer(String username, String fullname, String password) {
 		super();
 		this.username = username;
 		this.fullname = fullname;
 		this.password = password;
+		this.status = Status.Enable;
 	}
 	
 	
