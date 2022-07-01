@@ -6,7 +6,7 @@ import com.learning.entity.Customer;
 
 public interface CustomerService {
 	//simple interface
-	public Customer getCustomer(int id);
+	public Customer getCustomer(int customerId);
 	public Customer createCustomer(Customer customer);
 	public Customer updateCustomer(Customer customer);
 	public String deleteCustomer(int Customer);
