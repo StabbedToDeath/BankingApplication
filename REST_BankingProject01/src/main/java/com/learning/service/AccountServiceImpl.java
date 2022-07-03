@@ -3,12 +3,13 @@ package com.learning.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.learning.entity.Account;
 import com.learning.repo.AccountRepo;
 
 
-
+@Service
 public class AccountServiceImpl implements AccountService {
 	@Autowired
 	AccountRepo aRepo;

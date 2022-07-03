@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder.In;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.learning.entity.Customer;
 import com.learning.repo.CustomerRepo;
+ 
 
+@Service
 public class CustomerServiceImpl implements CustomerService {
 	
 	@Autowired
