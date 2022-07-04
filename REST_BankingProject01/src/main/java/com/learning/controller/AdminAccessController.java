@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +25,7 @@ public class AdminAccessController {
 	StaffService sService;
 	
 	//create Staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/staff")
 	public ResponseEntity<Staff> createStaff(@RequestBody Staff staff) {
 		try {
@@ -37,6 +39,7 @@ public class AdminAccessController {
 	}
 
 	//list all staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/staff")
 	public ResponseEntity<List<Staff>> getAllStaff(){
 		try {
@@ -47,6 +50,7 @@ public class AdminAccessController {
 	}
 
 	//enable/disable the staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/staff")
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {
