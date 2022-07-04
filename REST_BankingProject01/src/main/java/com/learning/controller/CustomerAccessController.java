@@ -63,11 +63,8 @@ public class CustomerAccessController {
 	public ResponseEntity<Object> updateCustomer(@MatrixVariable(name = "customerId") Integer custId,
 			@RequestBody Customer customer) {
 		try {
-			Customer toUpdate = cService.getCustomer(custId);
-
-			toUpdate.setFullname(customer.getFullname());
-			toUpdate.setPhone(customer.getPhone());
-
+			
+			cService.updateCustomer(customer);
 			// stuff to be uncommented later
 			// toUpdate.setPan(customer.getPan());
 			// toUpdate.setAadhar(customer.getAadhar());
@@ -76,8 +73,7 @@ public class CustomerAccessController {
 			// toUpdate.setPanI(customer.getPanI());
 			// toUpdate.setAadharI(customer.getAadharI());
 
-			cService.updateCustomer(toUpdate);
-			return new ResponseEntity<Object>(toUpdate, HttpStatus.valueOf(200));
+			return new ResponseEntity<Object>(HttpStatus.valueOf(200));
 
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<Object>("Sorry customer with " + custId + " not found", HttpStatus.NOT_FOUND);
@@ -129,7 +125,15 @@ public class CustomerAccessController {
 			@RequestBody Beneficiary beneficiary) {
 		try {
 			aService.getAccount(beneficiary.getBeneficaryAcNo());
-			cService.getCustomer(custId).addBeneficiary(beneficiary);
+			Customer customer = cService.getCustomer(custId);
+			customer.addBeneficiary(beneficiary);
+			beneficiary.setActivityYes();
+			beneficiary.setBeneficiaryName(cService.getCustomer(custId).getFullname());
+			
+			//update db
+			bService.createBeneficiary(beneficiary);
+			cService.updateCustomer(customer);
+			
 			return new ResponseEntity<String>("Beneficiary with " + beneficiary.getBeneficaryAcNo() + " added",
 					HttpStatus.valueOf(200));
 
@@ -155,7 +159,8 @@ public class CustomerAccessController {
 			@MatrixVariable(name = "beneficiaryId") Integer benId) {
 
 		try {
-			List<Beneficiary> bens = cService.getCustomer(custId).getBeneficiary();
+			Customer customer = cService.getCustomer(custId);
+			List<Beneficiary> bens = customer.getBeneficiary();
 
 			ListIterator<Beneficiary> lt = bens.listIterator();
 			while (lt.hasNext()) {
@@ -165,8 +170,10 @@ public class CustomerAccessController {
 					break;
 				}
 			}
-
+			
+			//update database
 			bService.deleteBeneficiary(benId);
+			cService.updateCustomer(customer);
 
 			return new ResponseEntity<String>("Beneficiary successfully deleted", HttpStatus.OK);
 		} catch (NoSuchElementException e) {
@@ -194,6 +201,10 @@ public class CustomerAccessController {
 				
 				Statement stmtC = new Statement(transaction.getTransactionId(),transaction.getAmount(), TransactionType.CR);
 				creditor.addTransaction(stmtC);
+				
+				//update database
+				aService.updateAccount(creditor);
+				aService.updateAccount(debitor);
 				
 				return new ResponseEntity<String>("Success", HttpStatus.OK);
 			} else {

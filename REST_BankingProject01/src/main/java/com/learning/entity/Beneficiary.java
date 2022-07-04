@@ -19,6 +19,7 @@ public class Beneficiary {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int beneficaryId;
 	private int fromCustomer;
+	private String beneficiaryName;
 	private int beneficaryAcNo;
 	private Date beneficiaryAddedDate;
 	private String approved;
@@ -67,7 +68,12 @@ public class Beneficiary {
 	public void setActivityNo() {
 		this.activityStatus = Activity.NO;
 	}
-	
+	public String getBeneficiaryName() {
+		return beneficiaryName;
+	}
+	public void setBeneficiaryName(String beneficiaryName) {
+		this.beneficiaryName = beneficiaryName;
+	}
 	public Beneficiary(int fromCustomer, int beneficaryAcNo, Date beneficiaryAddedDate) {
 		super();
 		this.fromCustomer = fromCustomer;
