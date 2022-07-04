@@ -6,6 +6,7 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,12 +40,14 @@ public class StaffAccessController {
 	BeneficiaryService bService;
 	
 	//get all customers
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer")
 	public ResponseEntity<List<Customer>> getAllCustomer(){
 		return new ResponseEntity<List<Customer>>(cService.getAllCustomer(), HttpStatus.valueOf(200));
 	}
 	
 	//enable/disable status of Customer Login
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/customer")
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
 		try {
@@ -56,6 +59,7 @@ public class StaffAccessController {
 	}
 	
 	//get customer with id
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer/{customerID}")
 	public ResponseEntity<Object> getCustomer(@MatrixVariable(name = "customerID") Integer custID) {
 		try {
@@ -66,6 +70,7 @@ public class StaffAccessController {
 	}
 	
 	//getStatement
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/account/{accNo}")
 	public Account getStatement(@PathVariable("accNo") int accNo) {
 		Account statement = null;
@@ -80,12 +85,14 @@ public class StaffAccessController {
 	}
 	
 	//list all bens to be approved
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/beneficiary")
 	public List<Beneficiary> getNotApprovedBens() {
 		return bService.getApprovedAccounts("No");
 	}
 	
 	//approve beneficiary
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/accounts/beneficiary")
 	public ResponseEntity<String> approveBeneficiary(@RequestBody Beneficiary beneficiary) {
 		try {
@@ -100,12 +107,14 @@ public class StaffAccessController {
 	}
 	
 	//list all accounts to be approved
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/accounts/approve")
 	public List<Account> getNotApprovedAccounts() {
 		return aService.getApprovedAccounts("No");
 	}
 	
 	//list accounts to be approved of specific customer
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/accounts/approve")
 	public ResponseEntity<String> approveAccount(@RequestBody Account account) {
 		try {
@@ -122,6 +131,7 @@ public class StaffAccessController {
 	}
 	
 	//transaction
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/transfer")
 	public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
 		try {
