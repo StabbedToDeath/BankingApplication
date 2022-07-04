@@ -7,11 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Customer {
@@ -35,11 +35,11 @@ public class Customer {
 	
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="custId"))
+	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="customerId"))
 	List<Account> accounts;	
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_beneficiary_tabl", joinColumns = @JoinColumn(name="custId"))
+	@JoinTable(name = "customer_beneficiary_table", joinColumns = @JoinColumn(name = "customerId"))
 	List<Beneficiary> beneficiary;	
 	
 	public int getCustomerId() {

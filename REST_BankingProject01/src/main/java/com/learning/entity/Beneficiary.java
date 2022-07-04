@@ -5,8 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 public class Beneficiary {
@@ -24,7 +24,6 @@ public class Beneficiary {
 	private Date beneficiaryAddedDate;
 	private String approved;
 	private Activity activityStatus = Activity.YES;
-	
 	
 	public int getBeneficaryId() {
 		return beneficaryId;

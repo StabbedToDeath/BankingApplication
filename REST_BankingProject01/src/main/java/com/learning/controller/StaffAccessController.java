@@ -62,7 +62,7 @@ public class StaffAccessController {
 		try {
 			return new ResponseEntity<Object>(cService.getCustomer(custID), HttpStatus.OK);
 		} catch (NoSuchElementException e) {
-			return new ResponseEntity<Object>("Customer status not changed", HttpStatus.valueOf(403));
+			return new ResponseEntity<Object>("Customer not found", HttpStatus.valueOf(403));
 		}
 	}
 	

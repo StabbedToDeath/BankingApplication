@@ -2,9 +2,19 @@ package com.learning.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.learning.entity.Transaction.TransactionType;
 
+@Entity
 public class Statement {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int stmtId;
 	
 	private Date date;
 	private int reference;
