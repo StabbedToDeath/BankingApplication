@@ -43,6 +43,11 @@ public class AccountServiceImpl implements AccountService {
 		return null;
 	}
 
+	@Override
+	public List<Account> getApprovedAccounts(String approved) {
+		return aRepo.findAllByApprovedEquals(approved);
+	}
+
 
 
 

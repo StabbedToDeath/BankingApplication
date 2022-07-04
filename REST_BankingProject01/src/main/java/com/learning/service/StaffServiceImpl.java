@@ -39,4 +39,9 @@ public class StaffServiceImpl implements StaffService {
 		sRepo.deleteById(id);
 	}
 
+	@Override
+	public Staff getStaffByUser(String user) {
+		return sRepo.findByStaffUserName(user);
+	}
+
 }

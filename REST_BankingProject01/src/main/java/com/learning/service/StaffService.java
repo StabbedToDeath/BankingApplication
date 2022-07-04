@@ -16,5 +16,6 @@ public interface StaffService {
 	
 	public void deleteStaffByID(int id);
 	
+	public Staff getStaffByUser(String user);
 	
 }

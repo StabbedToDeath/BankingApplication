@@ -17,4 +17,7 @@ public interface AccountService {
 	
 	public List<Account> getAllAccount();
 	
+	public List<Account> getApprovedAccounts(String approved);
+	
+	
 }
