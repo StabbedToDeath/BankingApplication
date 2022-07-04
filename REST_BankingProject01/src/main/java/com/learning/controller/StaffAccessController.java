@@ -58,7 +58,7 @@ public class StaffAccessController {
 	
 	//get customer with id
 	@GetMapping("/customer/{customerID}")
-	public ResponseEntity<Object> getCustomer(@MatrixVariable(name = "customerID") Integer custID) {
+	public ResponseEntity<Object> getCustomer(@MatrixVariable Integer custID) {
 		try {
 			return new ResponseEntity<Object>(cService.getCustomer(custID), HttpStatus.OK);
 		} catch (NoSuchElementException e) {

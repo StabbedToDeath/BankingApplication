@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "transactions")
 public class Transaction {
 	
 	public enum TransactionType{
@@ -23,7 +25,7 @@ public class Transaction {
 	private int fromAcc;
 	private int toAcc;
 	private String reason;
-	private String by;
+	private String executedBy;
 	
 	public Transaction() {
 		super();
@@ -31,13 +33,13 @@ public class Transaction {
 	}
 
 	public Transaction(double amount, int fromAcc,
-			int toAcc, String reason, String by) {
+			int toAcc, String reason, String executedBy) {
 		super();
 		this.amount = amount;
 		this.fromAcc = fromAcc;
 		this.toAcc = toAcc;
 		this.reason = reason;
-		this.by = by;
+		this.executedBy = executedBy;
 	}
 
 	public int getTransactionId() {
@@ -80,11 +82,11 @@ public class Transaction {
 	}
 
 	public String getBy() {
-		return by;
+		return executedBy;
 	}
 
-	public void setBy(String by) {
-		this.by = by;
+	public void setBy(String executedBy) {
+		this.executedBy = executedBy;
 	}
 	
 	
