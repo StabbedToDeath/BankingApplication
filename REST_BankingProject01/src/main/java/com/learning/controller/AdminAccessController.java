@@ -25,7 +25,6 @@ public class AdminAccessController {
 	StaffService sService;
 	
 	//create Staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/staff")
 	public ResponseEntity<Staff> createStaff(@RequestBody Staff staff) {
 		try {
@@ -39,7 +38,6 @@ public class AdminAccessController {
 	}
 
 	//list all staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/staff")
 	public ResponseEntity<List<Staff>> getAllStaff(){
 		try {
@@ -50,7 +48,6 @@ public class AdminAccessController {
 	}
 
 	//enable/disable the staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/staff")
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {

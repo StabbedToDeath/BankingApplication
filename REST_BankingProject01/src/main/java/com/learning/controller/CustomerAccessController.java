@@ -43,14 +43,12 @@ public class CustomerAccessController {
 	AccountService aService;
 	
 	
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping("/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
 		cService.createCustomer(customer);
 		return new ResponseEntity<Customer>(customer, HttpStatus.valueOf(201));
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@GetMapping("/{customerId}/account")
 	public ResponseEntity<List<Account>> getAllAccountByCustomerId(
 			@MatrixVariable(name = "customerId") Integer custId) {
@@ -58,13 +56,11 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@GetMapping("{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@MatrixVariable(name = "customerId") Integer custId) {
 		return new ResponseEntity<Customer>(cService.getCustomer(custId), HttpStatus.valueOf(200));
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@PutMapping("/{customerId}")
 	public ResponseEntity<Object> updateCustomer(@MatrixVariable(name = "customerId") Integer custId,
 			@RequestBody Customer customer) {
@@ -86,7 +82,6 @@ public class CustomerAccessController {
 		}
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping("/{customerId}/account")
 	public ResponseEntity<Object> createAccount(@MatrixVariable(name = "customerId") Integer custId,
 			@RequestBody Account account) {
@@ -104,7 +99,6 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@GetMapping("/{customerId}/account/{accountId}")
 	public ResponseEntity<Object> getAccountById(@MatrixVariable(name = "customerId") Integer custId,
 			@MatrixVariable(name = "accountId") Integer accountId) {
@@ -128,7 +122,6 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping("/{customerId}/beneficiary")
 	public ResponseEntity<String> createBeneficiary(@MatrixVariable(name = "customerId") Integer custId,
 			@RequestBody Beneficiary beneficiary) {
@@ -152,7 +145,6 @@ public class CustomerAccessController {
 		}
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@GetMapping("/{customerId}/beneficiary")
 	public ResponseEntity<List<Beneficiary>> getBeneficiary(@MatrixVariable(name = "customerId") Integer custId) {
 		try {
@@ -164,7 +156,6 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@DeleteMapping("/{customerId}/beneficiary/{beneficiaryID}")
 	public ResponseEntity<String> deleteBeneficiary(@MatrixVariable(name = "customerId") Integer custId,
 			@MatrixVariable(name = "beneficiaryId") Integer benId) {
@@ -228,7 +219,10 @@ public class CustomerAccessController {
 	}
 	
 	//authenticate
-	
+	@PostMapping("/autheticate")
+	public void autheticate() {
+		
+	}
 	
 	//approve Account by id - Staff access only
 	@PreAuthorize("hasRole('STAFF')")
@@ -246,7 +240,6 @@ public class CustomerAccessController {
 	}
 	
 	//change password
-	@PreAuthorize("hasRole('CUSTOMER')")
 	@PutMapping("/{username}/forgot")
 	public ResponseEntity<String> updatePassword(@MatrixVariable(name = "username") String userName, @RequestBody Customer customer) {
 		try {

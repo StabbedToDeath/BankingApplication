@@ -17,11 +17,9 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception{
 	http
 	.authorizeRequests()
-	/*
 	.antMatchers("/admin/**").hasRole("ADMIN")
 	.antMatchers("/customer/**").hasRole("CUSTOMER")
 	.antMatchers("/staff/**").hasRole("STAFF")
-	*/
 	.anyRequest()
 	.authenticated()
 	.and()
