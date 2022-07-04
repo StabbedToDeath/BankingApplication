@@ -28,14 +28,18 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 	}
 
 	@Override
-	public String deleteBeneficiary(int id) {
+	public void deleteBeneficiary(int id) {
 		bRepo.deleteById(id);
-		return "The account with Id #"+id+" has deleted" ;
 	}
 
 	@Override
 	public List<Beneficiary> getAllBeneficiary() {
 		return bRepo.findAll();
+	}
+
+	@Override
+	public List<Beneficiary> getApprovedAccounts(String approved) {
+		return bRepo.findAllByApprovedEquals(approved);
 	}
 
 }

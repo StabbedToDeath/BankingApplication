@@ -1,5 +1,6 @@
 package com.learning.entity;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,26 +15,100 @@ import org.springframework.data.annotation.Id;
 
 public class Account {
 	
-	enum AccountType{			//Savings?? and Checking account??
+	enum AccountType{
 		SB,
 		CA
 	}
 	
-	enum AccountStatus
-	{
-		Enable,
-		Disable
-	}
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int accountId;
 	private int accountNumber;
 	private AccountType accountType;
 	private double accountBalance;
-	private AccountStatus accountStatus;
+	private String approved;
+	private Date creationDate;
+	private String custName;
+	private String staffUser;
 	
+	private List<Statement> transactions;
+	
+	public Account(int accountNumber, AccountType accountType, double accountBalance) {
+		super();
+		this.accountNumber = accountNumber;
+		this.accountType = accountType;
+		this.accountBalance = accountBalance;
+		this.approved = "No";
+		this.setCreationDate(new Date());
+	}
+	public int getAccountNumber() {
+		return accountNumber;
+	}
 
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public AccountType getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(AccountType accountType) {
+		this.accountType = accountType;
+	}
+
+	public double getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(double accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public String getApproved() {
+		return approved;
+	}
+
+	public void setApproved(String approved) {
+		this.approved = approved;
+	}
+
+	public List<Statement> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(List<Statement> transactions) {
+		this.transactions = transactions;
+	}
+	
+	public void addTransaction(Statement transaction) {
+		this.transactions.add(transaction);
+	}
+
+	public String getCustName() {
+		return custName;
+	}
+
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+
+	public String getStaffUser() {
+		return staffUser;
+	}
+
+	public void setStaffUser(String staffUser) {
+		this.staffUser = staffUser;
+	}
+
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(Date creationDate) {
+		this.creationDate = creationDate;
+	}
+	
+	
 	
 
 }

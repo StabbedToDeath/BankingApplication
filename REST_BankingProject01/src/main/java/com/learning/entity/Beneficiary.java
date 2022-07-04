@@ -10,16 +10,19 @@ import org.springframework.data.annotation.Id;
 
 @Entity
 public class Beneficiary {
-
-	//fromCustomer : number
+	
+	private enum Activity {
+		YES, NO
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int beneficaryId;
-	private int fromCustomer;				//Could also be a list of customers/??
+	private int fromCustomer;
 	private int beneficaryAcNo;
 	private Date beneficiaryAddedDate;
 	private String approved;
+	private Activity activityStatus = Activity.YES;
 	
 	
 	public int getBeneficaryId() {
@@ -54,14 +57,23 @@ public class Beneficiary {
 	}
 	public Beneficiary() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Beneficiary(int fromCustomer, int beneficaryAcNo, Date beneficiaryAddedDate, String approved) {
+	public Activity getActivityStatus() {
+		return activityStatus;
+	}
+	public void setActivityYes() {
+		this.activityStatus = Activity.YES;
+	}
+	public void setActivityNo() {
+		this.activityStatus = Activity.NO;
+	}
+	
+	public Beneficiary(int fromCustomer, int beneficaryAcNo, Date beneficiaryAddedDate) {
 		super();
 		this.fromCustomer = fromCustomer;
 		this.beneficaryAcNo = beneficaryAcNo;
 		this.beneficiaryAddedDate = beneficiaryAddedDate;
-		this.approved = approved;
+		this.approved = "No";
 	}
 	
 }

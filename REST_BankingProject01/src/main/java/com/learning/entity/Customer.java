@@ -31,10 +31,16 @@ public class Customer {
 	private String password;
 	private Status status;
 	private Date created;
+	private long phone;
+	
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_account_tabl", joinColumns = @JoinColumn(name="custId"))
-	List<Account> accounts;				
+	List<Account> accounts;	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "customer_beneficiary_tabl", joinColumns = @JoinColumn(name="custId"))
+	List<Beneficiary> beneficiary;	
 	
 	public int getCustomerId() {
 		return customerId;
@@ -85,6 +91,23 @@ public class Customer {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+	public long getPhone() {
+		return phone;
+	}
+	public void setPhone(long phone) {
+		this.phone = phone;
+	}
+	
+	public List<Beneficiary> getBeneficiary() {
+		return beneficiary;
+	}
+	public void setBeneficiary(List<Beneficiary> beneficiary) {
+		this.beneficiary = beneficiary;
+	}
+	public void addBeneficiary(Beneficiary beneficiary) {
+		this.beneficiary.add(beneficiary);
+	}
+	
 	public Customer(String username, String fullname, String password) {
 		super();
 		this.username = username;
@@ -93,6 +116,7 @@ public class Customer {
 		this.status = Status.Enable;
 		this.created = new Date();
 	}
+	
 	
 	
 }
