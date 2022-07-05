@@ -21,6 +21,11 @@ public class Statement {
 	private double amount;
 	private TransactionType type;
 	
+	public Statement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Statement(int reference, double amount, TransactionType type) {
 		super();
 		this.date = new Date();

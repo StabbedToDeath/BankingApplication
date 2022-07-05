@@ -40,8 +40,8 @@ public class StaffServiceImpl implements StaffService {
 	}
 
 	@Override
-	public Staff getStaffByUser(String user) {
-		return sRepo.findByStaffUserName(user);
+	public Staff getStaffByUser(String staffUserName) {
+		return sRepo.findByStaffUserName(staffUserName);
 	}
 
 }

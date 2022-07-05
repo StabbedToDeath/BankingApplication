@@ -8,8 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,13 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.entity.Account;
 import com.learning.entity.Beneficiary;
 import com.learning.entity.Customer;
+import com.learning.entity.Staff;
 import com.learning.entity.Statement;
 import com.learning.entity.Transaction;
+import com.learning.entity.Staff.Status;
 import com.learning.entity.Transaction.TransactionType;
 import com.learning.exceptions.ResourceNotFoundException;
 import com.learning.service.AccountService;
 import com.learning.service.BeneficiaryService;
 import com.learning.service.CustomerService;
+import com.learning.service.StaffService;
+import com.learning.service.TransactionService;
 
 @RestController
 @RequestMapping("/api/staff")
@@ -39,17 +43,26 @@ public class StaffAccessController {
 	@Autowired
 	BeneficiaryService bService;
 	
+	@Autowired
+	StaffService sService;
+	
+	@Autowired
+	TransactionService tService;	
 	//get all customers
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer")
 	public ResponseEntity<List<Customer>> getAllCustomer(){
 		return new ResponseEntity<List<Customer>>(cService.getAllCustomer(), HttpStatus.valueOf(200));
 	}
 	
 	//enable/disable status of Customer Login
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/customer")
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
 		try {
-			cService.updateCustomer(customer);
+			Customer toUpdate = cService.getCustomer(customer.getCustomerId());
+			toUpdate.setStatus(customer.getStatus());
+			cService.updateCustomer(toUpdate);
 			return new ResponseEntity<Object>(cService.getCustomer(customer.getCustomerId()), HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<Object>("Customer status not changed", HttpStatus.NOT_FOUND);
@@ -57,8 +70,9 @@ public class StaffAccessController {
 	}
 	
 	//get customer with id
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer/{customerID}")
-	public ResponseEntity<Object> getCustomer(@MatrixVariable Integer custID) {
+	public ResponseEntity<Object> getCustomer(@PathVariable(name = "customerID") Integer custID) {
 		try {
 			return new ResponseEntity<Object>(cService.getCustomer(custID), HttpStatus.OK);
 		} catch (NoSuchElementException e) {
@@ -67,6 +81,7 @@ public class StaffAccessController {
 	}
 	
 	//getStatement
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/account/{accNo}")
 	public Account getStatement(@PathVariable("accNo") int accNo) {
 		Account statement = null;
@@ -81,13 +96,15 @@ public class StaffAccessController {
 	}
 	
 	//list all bens to be approved
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/beneficiary")
 	public List<Beneficiary> getNotApprovedBens() {
 		return bService.getApprovedAccounts("No");
 	}
 	
 	//approve beneficiary
-	@PutMapping("/accounts/beneficiary")
+	@PreAuthorize("hasRole('STAFF')")
+	@PutMapping("/beneficiary")
 	public ResponseEntity<String> approveBeneficiary(@RequestBody Beneficiary beneficiary) {
 		try {
 			aService.getAccount(beneficiary.getBeneficaryAcNo());
@@ -101,12 +118,14 @@ public class StaffAccessController {
 	}
 	
 	//list all accounts to be approved
+	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/accounts/approve")
 	public List<Account> getNotApprovedAccounts() {
 		return aService.getApprovedAccounts("No");
 	}
 	
 	//list accounts to be approved of specific customer
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/accounts/approve")
 	public ResponseEntity<String> approveAccount(@RequestBody Account account) {
 		try {
@@ -123,6 +142,7 @@ public class StaffAccessController {
 	}
 	
 	//transaction
+	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/transfer")
 	public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
 		try {
@@ -134,7 +154,9 @@ public class StaffAccessController {
 
 			if (debitor.getAccountBalance() > transaction.getAmount() && debitor.getApproved().equalsIgnoreCase("yes")
 					&& creditor.getApproved().equalsIgnoreCase("yes")) {
-
+				
+				tService.createTransactions(transaction);
+				
 				debitor.setAccountBalance(debitor.getAccountBalance() - transaction.getAmount());
 				creditor.setAccountBalance(creditor.getAccountBalance() + transaction.getAmount());
 				
@@ -144,6 +166,10 @@ public class StaffAccessController {
 				Statement stmtC = new Statement(transaction.getTransactionId(),transaction.getAmount(), TransactionType.CR);
 				creditor.addTransaction(stmtC);
 				
+				//update database
+				aService.updateAccount(creditor);
+				aService.updateAccount(debitor);
+				
 				return new ResponseEntity<String>("Success", HttpStatus.OK);
 			} else {
 				throw new ArithmeticException("Dont cheat the bank! You fool!");
@@ -151,6 +177,24 @@ public class StaffAccessController {
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<String>("Doesn't exist!", HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@PreAuthorize("hasRole('STAFF')")
+	@PostMapping("/authenticate")
+	public ResponseEntity<String> authenticate(@RequestBody Staff staff) {
+
+		List<Staff> allStaff = sService.getAllStaff();
+
+		for(Staff employee : allStaff) {
+			if (employee.getStaffUserName().matches(staff.getStaffUserName()) &&
+					employee.getStaffPassword().matches(staff.getStaffPassword())) {
+				if (employee.getStatus() == Status.Enable)
+					return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
+				else 
+					return new ResponseEntity<String>("Failed to Authenticate. Check with Admin", HttpStatus.FORBIDDEN);
+			}
+		}
+		return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
 	}
 	
 }

@@ -9,7 +9,7 @@ import javax.persistence.Id;
 @Entity
 public class Staff {
 	
-	enum Status{
+	public enum Status{
 		Enable,
 		Disable
 	}
@@ -21,7 +21,6 @@ public class Staff {
 	private String staffFullName;
 	private String staffUserName;
 	private String staffPassword;
-	private String staffName;			
 	private Status status;
 	
 	
@@ -49,12 +48,6 @@ public class Staff {
 	public void setStaffPassword(String staffPassword) {
 		this.staffPassword = staffPassword;
 	}
-	public String getStaffName() {
-		return staffName;
-	}
-	public void setStaffName(String staffName) {
-		this.staffName = staffName;
-	}
 	public Status getStatus() {
 		return status;
 	}
@@ -65,12 +58,11 @@ public class Staff {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Staff(String staffFullName, String staffUserName, String staffPassword, String staffName, Status status) {
+	public Staff(String staffFullName, String staffUserName, String staffPassword, Status status) {
 		super();
 		this.staffFullName = staffFullName;
 		this.staffUserName = staffUserName;
 		this.staffPassword = staffPassword;
-		this.staffName = staffName;
 		this.status = status;
 	}
 	

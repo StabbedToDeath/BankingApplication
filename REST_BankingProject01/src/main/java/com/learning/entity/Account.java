@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Account {
 	
-	enum AccountType{
+	public enum AccountType{
 		SB,
 		CA
 	}
@@ -35,9 +35,12 @@ public class Account {
 	@JoinTable(name = "acc_stmt_tbl", joinColumns = @JoinColumn(name="accountNumber"))
 	private List<Statement> transactions;
 	
-	public Account(int accountNumber, AccountType accountType, double accountBalance) {
+	public Account() {
 		super();
-		this.accountNumber = accountNumber;
+		// TODO Auto-generated constructor stub
+	}
+	public Account(AccountType accountType, double accountBalance) {
+		super();
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;
 		this.approved = "No";

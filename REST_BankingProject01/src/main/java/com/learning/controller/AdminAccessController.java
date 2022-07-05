@@ -14,47 +14,73 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learning.entity.Customer;
+import com.learning.entity.Staff.Status;
 import com.learning.entity.Staff;
 import com.learning.service.StaffService;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AdminAccessController {
-	
+
 	@Autowired
 	StaffService sService;
-	
-	//create Staff
+
+	// create Staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/staff")
 	public ResponseEntity<Staff> createStaff(@RequestBody Staff staff) {
-		try {
-			sService.getStaffByUser(staff.getStaffUserName());
+		boolean fake = false;
+		List<Staff> allStaff = sService.getAllStaff();
+
+		for(Staff employee : allStaff) {
+			if (employee.getStaffUserName().matches(staff.getStaffUserName())) {
+				fake = true;
+				break;
+			}
+		}
+		if (!fake) {
+			staff.setStatus(Status.Enable);
 			sService.addStaff(staff);
 			return new ResponseEntity<Staff>(HttpStatus.CREATED);
-		} catch(NoSuchElementException e) {
+		} else
 			return new ResponseEntity<Staff>(HttpStatus.FORBIDDEN);
-		}
-		
 	}
+			
 
-	//list all staff
+	// list all staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/staff")
-	public ResponseEntity<List<Staff>> getAllStaff(){
+	public ResponseEntity<List<Staff>> getAllStaff() {
 		try {
 			return new ResponseEntity<List<Staff>>(sService.getAllStaff(), HttpStatus.OK);
 		} catch (NoSuchElementException e) {
-			return new ResponseEntity<List<Staff>>(new ArrayList<Staff>() , HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<Staff>>(new ArrayList<Staff>(), HttpStatus.NOT_FOUND);
 		}
 	}
 
-	//enable/disable the staff
+	// enable/disable the staff
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/staff")
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {
-			sService.getStaffByID(staff.getStaffId()).setStatus(staff.getStatus());
+			Staff toUpdate = sService.getStaffByID(staff.getStaffId());
+			toUpdate.setStatus(staff.getStatus());
+			sService.updateStaff(toUpdate);
 			return new ResponseEntity<String>("Staff status changed", HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<String>("Staff status not changed", HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/authenticate")
+	public ResponseEntity<String> authenticate(@RequestBody Customer customer) {
+		if (customer.getUsername().matches("Pranav")) {
+			if (customer.getPassword().matches("root"))
+				return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
+		}
+		return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
+
 	}
 }

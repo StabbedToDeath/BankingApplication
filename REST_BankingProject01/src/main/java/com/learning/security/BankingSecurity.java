@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -16,10 +18,11 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	
 	protected void configure(HttpSecurity http) throws Exception{
 	http
+	.csrf().disable()
 	.authorizeRequests()
-	.antMatchers("/admin/**").hasRole("ADMIN")
-	.antMatchers("/customer/**").hasRole("CUSTOMER")
-	.antMatchers("/staff/**").hasRole("STAFF")
+	.antMatchers("/admin/*").hasRole("ADMIN")
+	.antMatchers("/customer/*").hasRole("CUSTOMER")
+	.antMatchers("/staff/*").hasRole("STAFF")
 	.anyRequest()
 	.authenticated()
 	.and()
@@ -38,5 +41,11 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	
+	public void configurePathMatch(PathMatchConfigurer configurer) {
+		UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent(false);
+        configurer.setUrlPathHelper(urlPathHelper);
+	}
 }

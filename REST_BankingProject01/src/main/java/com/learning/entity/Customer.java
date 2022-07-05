@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Customer {
 	
-	enum Status
+	public enum Status
 	{
 		Enable,
 		Disable
@@ -114,7 +114,7 @@ public class Customer {
 		this.fullname = fullname;
 		this.password = password;
 		this.status = Status.Enable;
-		this.created = new Date();
+		this.setCreated(new Date());
 	}
 	
 	
