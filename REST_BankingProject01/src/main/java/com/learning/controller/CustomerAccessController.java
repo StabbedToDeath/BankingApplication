@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.entity.Account;
 import com.learning.entity.Beneficiary;
 import com.learning.entity.Customer;
-import com.learning.entity.Customer.Status;
 import com.learning.entity.Statement;
 import com.learning.entity.Transaction;
 import com.learning.entity.Transaction.TransactionType;
@@ -54,7 +53,7 @@ public class CustomerAccessController {
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
 		
 		customer.setCreated(new Date());
-		customer.setStatus(Status.Enable);
+		customer.setActive(true);
 		customer.setRole("Customer");
 		cService.createCustomer(customer);
 		return new ResponseEntity<Customer>(customer, HttpStatus.valueOf(201));

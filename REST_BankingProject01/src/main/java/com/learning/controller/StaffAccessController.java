@@ -63,7 +63,7 @@ public class StaffAccessController {
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
 		try {
 			Customer toUpdate = cService.getCustomer(customer.getUserId());
-			toUpdate.setStatus(customer.getStatus());
+			toUpdate.setActive(customer.isActive());
 			cService.updateCustomer(toUpdate);
 			return new ResponseEntity<Object>(cService.getCustomer(customer.getUserId()), HttpStatus.OK);
 		} catch (NoSuchElementException e) {

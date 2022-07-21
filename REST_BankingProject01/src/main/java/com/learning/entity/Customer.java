@@ -17,13 +17,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "userId")
 public class Customer extends User{
 	
-	public enum Status
-	{
-		Enable,
-		Disable
-	}
-	
-	private Status status;
 	private Date created;
 	private long phone;
 	
@@ -40,22 +33,15 @@ public class Customer extends User{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Customer(String username, String fullname, String password, boolean isActive, Status status, Date created, long phone, List<Account> accounts,
+	public Customer(String username, String fullname, String password, boolean isActive, Date created, long phone, List<Account> accounts,
 			List<Beneficiary> beneficiary) {
 		super(username, fullname, password, "Customer", isActive);
-		this.status = status;
 		this.created = created;
 		this.phone = phone;
 		this.accounts = accounts;
 		this.beneficiary = beneficiary;
 	}
 	
-	public Status getStatus() {
-		return status;
-	}
-	public void setStatus(Status status) {
-		this.status = status;
-	}
 	public List<Account> getAccount() {
 		return accounts;
 	}
