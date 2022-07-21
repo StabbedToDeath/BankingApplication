@@ -131,7 +131,8 @@ public class StaffAccessController {
 	@PutMapping("/accounts/approve")
 	public ResponseEntity<String> approveAccount(@RequestBody Account account) {
 		try {
-			aService.getAccount(account.getAccountNumber());
+			Account toUpdate = aService.getAccount(account.getAccountNumber());
+			toUpdate.setApproved("Yes");
 			aService.updateAccount(account);
 			// add Staff Username
 			//
