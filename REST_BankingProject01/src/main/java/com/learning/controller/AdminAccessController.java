@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.learning.entity.Customer;
-import com.learning.entity.Staff.Status;
+
 import com.learning.entity.Staff;
 import com.learning.service.StaffService;
 
@@ -42,7 +42,7 @@ public class AdminAccessController {
 			}
 		}
 		if (!fake) {
-			staff.setStatus(Status.Enable);
+			//staff.setStatus(Status.Enable);
 			staff.setRole("Staff");
 			sService.addStaff(staff);
 			return new ResponseEntity<Staff>(HttpStatus.CREATED);
@@ -68,10 +68,11 @@ public class AdminAccessController {
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {
 			Staff toUpdate = sService.getStaffByID(staff.getUserId());
-			toUpdate.setStatus(staff.getStatus());
+			//toUpdate.setStatus(staff.getStatus());
+			toUpdate.setActive(staff.isActive());
 			sService.updateStaff(toUpdate);
 			return new ResponseEntity<String>("Staff status changed", HttpStatus.OK);
-		} catch (NoSuchElementException e) {
+		} catch (NoSuchElementException e) {	
 			return new ResponseEntity<String>("Staff status not changed", HttpStatus.NOT_FOUND);
 		}
 	}

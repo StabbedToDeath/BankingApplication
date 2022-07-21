@@ -22,7 +22,6 @@ import com.learning.entity.Customer;
 import com.learning.entity.Staff;
 import com.learning.entity.Statement;
 import com.learning.entity.Transaction;
-import com.learning.entity.Staff.Status;
 import com.learning.entity.Transaction.TransactionType;
 import com.learning.exceptions.ResourceNotFoundException;
 import com.learning.service.AccountService;
@@ -50,15 +49,15 @@ public class StaffAccessController {
 	
 	@Autowired
 	TransactionService tService;	
+	
+	
 	//get all customers
-	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer")
 	public ResponseEntity<List<Customer>> getAllCustomer(){
 		return new ResponseEntity<List<Customer>>(cService.getAllCustomer(), HttpStatus.valueOf(200));
 	}
 	
 	//enable/disable status of Customer Login
-	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/customer")
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
 		try {
@@ -72,7 +71,6 @@ public class StaffAccessController {
 	}
 	
 	//get customer with id
-	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/customer/{customerID}")
 	public ResponseEntity<Object> getCustomer(@PathVariable(name = "customerID") Integer custID) {
 		try {
@@ -83,7 +81,6 @@ public class StaffAccessController {
 	}
 	
 	//getStatement
-	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/account/{accNo}")
 	public Account getStatement(@PathVariable("accNo") int accNo) {
 		Account statement = null;
@@ -98,14 +95,12 @@ public class StaffAccessController {
 	}
 	
 	//list all bens to be approved
-	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/beneficiary")
 	public List<Beneficiary> getNotApprovedBens() {
 		return bService.getApprovedAccounts("No");
 	}
 	
 	//approve beneficiary
-	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/beneficiary")
 	public ResponseEntity<String> approveBeneficiary(@RequestBody Beneficiary beneficiary) {
 		try {
@@ -120,20 +115,18 @@ public class StaffAccessController {
 	}
 	
 	//list all accounts to be approved
-	@PreAuthorize("hasRole('STAFF')")
 	@GetMapping("/accounts/approve")
 	public List<Account> getNotApprovedAccounts() {
 		return aService.getApprovedAccounts("No");
 	}
 	
 	//list accounts to be approved of specific customer
-	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/accounts/approve")
 	public ResponseEntity<String> approveAccount(@RequestBody Account account) {
 		try {
 			Account toUpdate = aService.getAccount(account.getAccountNumber());
 			toUpdate.setApproved("Yes");
-			aService.updateAccount(account);
+			aService.updateAccount(toUpdate);
 			// add Staff Username
 			//
 			return new ResponseEntity<String>(HttpStatus.OK);
@@ -145,7 +138,6 @@ public class StaffAccessController {
 	}
 	
 	//transaction
-	@PreAuthorize("hasRole('STAFF')")
 	@PutMapping("/transfer")
 	public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
 		try {
@@ -182,22 +174,19 @@ public class StaffAccessController {
 		}
 	}
 	
-	@PreAuthorize("hasRole('STAFF')")
-	@PostMapping("/authenticate")
-	public ResponseEntity<String> authenticate(@RequestBody Staff staff) {
-
-		List<Staff> allStaff = sService.getAllStaff();
-
-		for(Staff employee : allStaff) {
-			if (employee.getUsername().matches(staff.getUsername()) &&
-					employee.getPassword().matches(staff.getPassword())) {
-				if (employee.getStatus() == Status.Enable)
-					return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
-				else 
-					return new ResponseEntity<String>("Failed to Authenticate. Check with Admin", HttpStatus.FORBIDDEN);
-			}
-		}
-		return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
-	}
-	
+	/*
+	 * @PostMapping("/authenticate") public ResponseEntity<String>
+	 * authenticate(@RequestBody Staff staff) {
+	 * 
+	 * List<Staff> allStaff = sService.getAllStaff();
+	 * 
+	 * for(Staff employee : allStaff) { if
+	 * (employee.getUsername().matches(staff.getUsername()) &&
+	 * employee.getPassword().matches(staff.getPassword())) { if
+	 * (employee.getStatus() == Status.Enable) return new
+	 * ResponseEntity<String>("Authentication Successfull", HttpStatus.OK); else
+	 * return new ResponseEntity<String>("Failed to Authenticate. Check with Admin",
+	 * HttpStatus.FORBIDDEN); } } return new
+	 * ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN); }
+	 */
 }
