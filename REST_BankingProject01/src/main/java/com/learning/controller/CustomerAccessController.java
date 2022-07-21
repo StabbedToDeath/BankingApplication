@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +34,7 @@ import com.learning.service.TransactionService;
 
 @RestController
 @RequestMapping("/api/customer")
+@CrossOrigin
 public class CustomerAccessController {
 
 	@Autowired
@@ -53,6 +55,7 @@ public class CustomerAccessController {
 		
 		customer.setCreated(new Date());
 		customer.setStatus(Status.Enable);
+		customer.setRole("Customer");
 		cService.createCustomer(customer);
 		return new ResponseEntity<Customer>(customer, HttpStatus.valueOf(201));
 	}
@@ -250,24 +253,24 @@ public class CustomerAccessController {
 		}
 	}
 	
-	//authenticate
-	@PreAuthorize("hasRole('CUSTOMER')")
-	@PostMapping("/authenticate")
-	public ResponseEntity<String> authenticate(@RequestBody Customer customer) {
-		try {
-			Customer toCheck = cService.getCustomerByUsername(customer.getUsername());
-			if (toCheck.getPassword().matches(customer.getPassword())) {
-				if (toCheck.getStatus() == Status.Enable)
-					return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
-				else
-					return new ResponseEntity<String>("Failed to Authenticate. Check with Staff", HttpStatus.FORBIDDEN);
-			}				
-		} catch (NullPointerException e) {
-			return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
-		}
-		return new ResponseEntity<String>("Please check again", HttpStatus.FORBIDDEN);
-		
-	}
+//	//authenticate
+//	@PreAuthorize("hasRole('CUSTOMER')")
+//	@PostMapping("/authenticate")
+//	public ResponseEntity<String> authenticate(@RequestBody Customer customer) {
+//		try {
+//			Customer toCheck = cService.getCustomerByUsername(customer.getUsername());
+//			if (toCheck.getPassword().matches(customer.getPassword())) {
+//				if (toCheck.getStatus() == Status.Enable)
+//					return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
+//				else
+//					return new ResponseEntity<String>("Failed to Authenticate. Check with Staff", HttpStatus.FORBIDDEN);
+//			}				
+//		} catch (NullPointerException e) {
+//			return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
+//		}
+//		return new ResponseEntity<String>("Please check again", HttpStatus.FORBIDDEN);
+//		
+//	}
 	
 	//approve Account by id - Staff access only
 	@PreAuthorize("hasRole('STAFF')")

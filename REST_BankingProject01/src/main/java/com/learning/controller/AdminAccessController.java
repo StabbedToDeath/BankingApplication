@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,6 +22,7 @@ import com.learning.service.StaffService;
 
 @RestController
 @RequestMapping("/api/admin")
+@CrossOrigin
 public class AdminAccessController {
 
 	@Autowired
@@ -34,13 +36,14 @@ public class AdminAccessController {
 		List<Staff> allStaff = sService.getAllStaff();
 
 		for(Staff employee : allStaff) {
-			if (employee.getStaffUserName().matches(staff.getStaffUserName())) {
+			if (employee.getUsername().matches(staff.getUsername())) {
 				fake = true;
 				break;
 			}
 		}
 		if (!fake) {
 			staff.setStatus(Status.Enable);
+			staff.setRole("Staff");
 			sService.addStaff(staff);
 			return new ResponseEntity<Staff>(HttpStatus.CREATED);
 		} else
@@ -64,7 +67,7 @@ public class AdminAccessController {
 	@PutMapping("/staff")
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {
-			Staff toUpdate = sService.getStaffByID(staff.getStaffId());
+			Staff toUpdate = sService.getStaffByID(staff.getUserId());
 			toUpdate.setStatus(staff.getStatus());
 			sService.updateStaff(toUpdate);
 			return new ResponseEntity<String>("Staff status changed", HttpStatus.OK);

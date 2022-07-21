@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,7 @@ import com.learning.service.TransactionService;
 
 @RestController
 @RequestMapping("/api/staff")
+@CrossOrigin
 public class StaffAccessController {
 	
 	@Autowired
@@ -60,10 +62,10 @@ public class StaffAccessController {
 	@PutMapping("/customer")
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
 		try {
-			Customer toUpdate = cService.getCustomer(customer.getCustomerId());
+			Customer toUpdate = cService.getCustomer(customer.getUserId());
 			toUpdate.setStatus(customer.getStatus());
 			cService.updateCustomer(toUpdate);
-			return new ResponseEntity<Object>(cService.getCustomer(customer.getCustomerId()), HttpStatus.OK);
+			return new ResponseEntity<Object>(cService.getCustomer(customer.getUserId()), HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<Object>("Customer status not changed", HttpStatus.NOT_FOUND);
 		}
@@ -186,8 +188,8 @@ public class StaffAccessController {
 		List<Staff> allStaff = sService.getAllStaff();
 
 		for(Staff employee : allStaff) {
-			if (employee.getStaffUserName().matches(staff.getStaffUserName()) &&
-					employee.getStaffPassword().matches(staff.getStaffPassword())) {
+			if (employee.getUsername().matches(staff.getUsername()) &&
+					employee.getPassword().matches(staff.getPassword())) {
 				if (employee.getStatus() == Status.Enable)
 					return new ResponseEntity<String>("Authentication Successfull", HttpStatus.OK);
 				else 

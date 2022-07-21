@@ -8,7 +8,7 @@ import com.learning.entity.Staff;
 
 public interface StaffRepo extends JpaRepository<Staff, Integer>{
 	
-	@Query("select s from Staff s where s.staffUserName = ?1")
-	Staff findByStaffUserName(String staffUserName);
+	Staff findByUsername(String username);
+	Staff deleteByUsername(String username);
 	
 }

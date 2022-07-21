@@ -7,14 +7,15 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 
 @Entity
-public class Customer {
+@PrimaryKeyJoinColumn(name = "userId")
+public class Customer extends User{
 	
 	public enum Status
 	{
@@ -22,13 +23,6 @@ public class Customer {
 		Disable
 	}
 	
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int customerId;
-	private String username;
-	private String fullname;
-	private String password;
 	private Status status;
 	private Date created;
 	private long phone;
@@ -42,34 +36,20 @@ public class Customer {
 	@JoinTable(name = "customer_beneficiary_table", joinColumns = @JoinColumn(name = "customerId"))
 	List<Beneficiary> beneficiary;	
 	
-	public int getCustomerId() {
-		return customerId;
-	}
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getFullname() {
-		return fullname;
-	}
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public Customer(String username, String fullname, String password, boolean isActive, Status status, Date created, long phone, List<Account> accounts,
+			List<Beneficiary> beneficiary) {
+		super(username, fullname, password, "Customer", isActive);
+		this.status = status;
+		this.created = created;
+		this.phone = phone;
+		this.accounts = accounts;
+		this.beneficiary = beneficiary;
+	}
+	
 	public Status getStatus() {
 		return status;
 	}
@@ -107,16 +87,6 @@ public class Customer {
 	public void addBeneficiary(Beneficiary beneficiary) {
 		this.beneficiary.add(beneficiary);
 	}
-	
-	public Customer(String username, String fullname, String password) {
-		super();
-		this.username = username;
-		this.fullname = fullname;
-		this.password = password;
-		this.status = Status.Enable;
-		this.setCreated(new Date());
-	}
-	
 	
 	
 }
