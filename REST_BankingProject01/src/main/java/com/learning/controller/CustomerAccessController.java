@@ -48,7 +48,7 @@ public class CustomerAccessController {
 	@Autowired
 	TransactionService tService;
 	
-	@PreAuthorize("hasRole('CUSTOMER')")
+	//@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping("/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
 		
@@ -59,7 +59,7 @@ public class CustomerAccessController {
 		return new ResponseEntity<Customer>(customer, HttpStatus.valueOf(201));
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@GetMapping("/{customerId}/account")
 	public ResponseEntity<List<Account>> getAllAccountByCustomerId(
 			@PathVariable(name = "customerId") Integer custId) {
@@ -67,13 +67,13 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	//@PreAuthorize("hasRole('Customer')")
 	@GetMapping("{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable(name = "customerId") Integer custId) {
 		return new ResponseEntity<Customer>(cService.getCustomer(custId), HttpStatus.valueOf(200));
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@PutMapping("/{customerId}")
 	public ResponseEntity<Object> updateCustomer(@PathVariable(name = "customerId") Integer custId,
 			@RequestBody Customer customer) {
@@ -100,7 +100,7 @@ public class CustomerAccessController {
 		}
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@PostMapping("/{customerId}/account")
 	public ResponseEntity<Object> createAccount(@PathVariable(name = "customerId") Integer custId,
 			@RequestBody Account account) {
@@ -121,7 +121,7 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@GetMapping("/{customerId}/account/{accountId}")
 	public ResponseEntity<Object> getAccountById(@PathVariable(name = "customerId") Integer custId,
 			@PathVariable(name = "accountId") Integer accountId) {
@@ -145,7 +145,7 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@PostMapping("/{customerId}/beneficiary")
 	public ResponseEntity<String> createBeneficiary(@PathVariable(name = "customerId") Integer custId,
 			@RequestBody Account account) {
@@ -186,7 +186,7 @@ public class CustomerAccessController {
 
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@DeleteMapping("/{customerId}/beneficiary/{beneficiaryId}")
 	public ResponseEntity<String> deleteBeneficiary(@PathVariable(name = "customerId") Integer custId,
 			@PathVariable(name = "beneficiaryId") Integer benId) {
@@ -214,7 +214,7 @@ public class CustomerAccessController {
 		}
 	}
 
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@PutMapping("/transfer")
 	public ResponseEntity<String> transfer(@RequestBody Transaction transaction) {
 		try {
@@ -253,7 +253,7 @@ public class CustomerAccessController {
 	}
 	
 //	//authenticate
-//	@PreAuthorize("hasRole('CUSTOMER')")
+//	@PreAuthorize("hasRole('Customer')")
 //	@PostMapping("/authenticate")
 //	public ResponseEntity<String> authenticate(@RequestBody Customer customer) {
 //		try {
@@ -289,7 +289,7 @@ public class CustomerAccessController {
 	}
 	
 	//change password
-	@PreAuthorize("hasRole('CUSTOMER')")
+	@PreAuthorize("hasRole('Customer')")
 	@PutMapping("/{username}/forgot")
 	public ResponseEntity<String> updatePassword(@PathVariable(name = "username") String userName, @RequestBody Customer customer) {
 		try {

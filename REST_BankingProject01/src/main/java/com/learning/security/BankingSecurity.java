@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
@@ -28,10 +29,11 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	.csrf().disable()
 	.cors().disable()
 	.authorizeRequests()
+	.antMatchers("/api/customer/register").permitAll()
 	.antMatchers("/authenticate").permitAll()
-	.antMatchers("/api/admin/*").hasRole("ADMIN")
-	.antMatchers("/api/customer/*").hasRole("Customer")
-	.antMatchers("/api/staff/*").hasRole("Staff")
+	.antMatchers("/api/admin/**").hasRole("ADMIN")
+	.antMatchers("/api/customer/**").hasAnyAuthority("Customer")
+	.antMatchers("/api/staff/**").hasAnyAuthority("Staff")
 	.anyRequest()
 	.authenticated()
 	.and()
@@ -50,7 +52,8 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
+		//return new BCryptPasswordEncoder();
+		return NoOpPasswordEncoder.getInstance();
 	}
 	
 	
