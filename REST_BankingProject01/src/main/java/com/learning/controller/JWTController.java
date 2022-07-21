@@ -2,10 +2,12 @@ package com.learning.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,13 +36,19 @@ public class JWTController {
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> generateToken(@RequestBody JWTRequest jwtRequest){
 		
+		System.out.println("Im here");
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
+		try {
+			CustomUserDetails userDetails =  (CustomUserDetails) cudService.loadUserByUsername(jwtRequest.getUsername());
+			
+			String token = jwtUtil.generateToken(userDetails);
+			
+			return ResponseEntity.ok(new JWTResponse(token, userDetails.getRole()));
+			
+		} catch (UsernameNotFoundException e) {
+			return new ResponseEntity<String>("Invalid Token", HttpStatus.NOT_ACCEPTABLE);
+		}
 		
-		CustomUserDetails userDetails =  (CustomUserDetails) cudService.loadUserByUsername(jwtRequest.getUsername());
-		
-		String token = jwtUtil.generateToken(userDetails);
-		
-		return ResponseEntity.ok(new JWTResponse(token, userDetails.getRole()));
 	}
 	
-}
+}	

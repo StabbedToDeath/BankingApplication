@@ -13,6 +13,7 @@ public class CustomUserDetails implements UserDetails {
 	
 	public CustomUserDetails(User user) {
 		this.user = user;
+		System.out.println(user.getRole());
 	}
 	
 	public String getRole() {

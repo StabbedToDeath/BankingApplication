@@ -31,6 +31,7 @@ public class BankingSecurity extends WebSecurityConfigurerAdapter {
 	.csrf().disable()
 	.cors().and()//disable()
 	.authorizeRequests()
+	.antMatchers("/api/**").permitAll()
 	.antMatchers("/api/customer/register").permitAll()
 	//.antMatchers("/api/staff/customer").permitAll()
 	.antMatchers("/authenticate").permitAll()
