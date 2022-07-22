@@ -1,0 +1,20 @@
+<p>Create Account Form</p>
+<div>
+
+  <form #registerForm = "ngForm" (ngSubmit) = createAccount(registerForm.value)>
+<mat-form-field appearance="fill">
+    <mat-label>Input</mat-label>
+    <input matInput name="amount" ngModel>
+  </mat-form-field>
+
+
+  <p> Select Type of Account</p>
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1">Savings Account</mat-radio-button>
+    <input matInput name="SB" ngModel>
+    <mat-radio-button value="2">Current Account</mat-radio-button>
+    <input matInput name="CA" ngModel>
+  </mat-radio-group>
+  <button mat-button color="primary">Submit</button>
+</form>
+</div>
