@@ -1,0 +1,29 @@
+<div>
+    <!-- ADD CUSTOMER DATABASE-->
+    <form class = form #transferMoney = "ngForm" (ngSubmit) = transfer(transferMoney.value)>
+        
+        <mat-form-field appearance="fill">
+          <mat-label>Account Number</mat-label>
+          <input matInput name = "fromAcc" ngModel>
+        </mat-form-field><br>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>To Account Number</mat-label>
+            <input matInput name = "toAcc" ngModel>
+        </mat-form-field><br>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput name = "amount" ngModel>
+        </mat-form-field><br>
+    
+        <mat-form-field appearance="fill">
+            <mat-label>Reason</mat-label>
+            <input matInput name = "reason" ngModel>
+          </mat-form-field><br>
+    
+        <button class = form-button mat-raised-button color="primary"
+        mat-stroked-button (click)="(transferMoney.value)">Transfer</button>
+    
+      </form>
+    </div>

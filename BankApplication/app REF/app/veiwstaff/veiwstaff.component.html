@@ -1,0 +1,40 @@
+
+<div style="Text-align:center">
+<a mat-raised-button color="primary" class="button-stretched" routerLink="/staff">Create Staff</a>
+<a mat-raised-button color="" class="button-stretched" routerLink="/viewstaff">View Staffs</a><br>
+<table style="width:100%">
+    <tr>
+        
+        <td colspan="3">Enable Disable Customer</td>
+    </tr>
+    
+    <tr>
+      <th>Staff Name</th>
+      <th>Staff User Name</th> 
+      <th>Enable Disable</th>
+    </tr>
+    <tr>
+      <td>Brett</td>
+      <td>12345</td>
+      <td><mat-slide-toggle>Slide me!</mat-slide-toggle></td>
+    </tr>
+    <tr>
+      <td>Benette</td>
+      <td>65487</td>
+      <td><mat-slide-toggle>Slide me!</mat-slide-toggle></td>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>23691</td>
+      <td><mat-slide-toggle>Slide me!</mat-slide-toggle></td>
+    </tr>
+  </table>
+  <mat-paginator [length]="10"
+              [pageSize]="10"
+              [pageSizeOptions]="[1, 2, 3, 4]"
+              aria-label="Select page">
+</mat-paginator>
+
+  <router-outlet></router-outlet>
+  
+
