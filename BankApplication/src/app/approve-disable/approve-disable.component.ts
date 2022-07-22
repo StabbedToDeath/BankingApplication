@@ -38,7 +38,5 @@ export class ApproveDisableComponent implements OnInit {
       {
         this.ngOnInit();
       });
-   
-  
   }
 }

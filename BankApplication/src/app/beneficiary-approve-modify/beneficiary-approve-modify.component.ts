@@ -9,7 +9,7 @@ import { StaffService } from '../staff.service';
 export class BeneficiaryApproveModifyComponent implements OnInit {
 
   displayedColumns: string [] = ["Customer", "beneficiaryName+AcNo", "beneficiaryAddedDate", "approved" ];
-  beneficaries:any;
+  beneficaries:any = [];
 
   constructor(private staffService:StaffService ) {}
 
@@ -23,6 +23,22 @@ export class BeneficiaryApproveModifyComponent implements OnInit {
       {
         this.beneficaries = res;
       })
+  }
+
+  approveBeneficiary(beneficaryAcNo:any, beneficaryId:any)
+  {
+    const body = {
+      "beneficaryAcNo": beneficaryAcNo,
+      "beneficaryId": beneficaryId,
+      "approved": "Yes"
+    };
+
+    console.log(body);
+
+    this.staffService.approveBeneficiary(body).subscribe(res=>
+      {
+        this.ngOnInit();
+      });
   }
 
 }

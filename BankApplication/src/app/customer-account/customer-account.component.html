@@ -2,6 +2,8 @@
     Search Account by Account number
 </h1>
 
+<img src = "assets/images/obama-cube.gif">
+
 <div>
     <form class = form #accNo = "ngForm" (ngSubmit) = getStatement(accNo.value)>
         <mat-form-field appearance="fill">
@@ -15,10 +17,25 @@
 
 </div>
 
-<div *ngIf = "!onStart" class="header-title">
+<!-- <div *ngIf = "!onStart" class="header-title">
     {{"Account Number: " +  account.accountNumber}}<p></p>
     {{"Customer Name: " + account.custName}}<p></p>
-    {{"Account Balance: " + account.accountBalance}}
+    {{"Account Balance: " + account.accountBalance}}  
+</div> -->
+
+<div>
+  <mat-card class="card">
+    <mat-card-title-group>
+      <mat-card-title>Account Details</mat-card-title>
+      <mat-card-subtitle>Small</mat-card-subtitle>
+      <img src = "assets/images/batch62.gif" >
+    </mat-card-title-group>
+    <mat-card-content>
+      {{"Account Number: " +  account.accountNumber}}<p></p>
+      {{"Customer Name: " + account.custName}}<p></p>
+      {{"Account Balance: " + account.accountBalance}}
+    </mat-card-content>
+  </mat-card>
 </div>
 
 <table mat-table [dataSource]="transactions" class="mat-elevation-z8">

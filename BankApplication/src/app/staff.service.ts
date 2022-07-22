@@ -35,9 +35,9 @@ export class StaffService {
     return this.http.get(`${this.baseurl}beneficiary`);
   }
 
-  approveBeneficiary(beneficiary:any)  //FIELDS
+  approveBeneficiary(body:any)  //FIELDS
   {
-    return this.http.put(`${this.baseurl}beneficiary`, beneficiary);
+    return this.http.put(`${this.baseurl}beneficiary/approve`, body);
   }
 
   getNotApprovedAccounts()
