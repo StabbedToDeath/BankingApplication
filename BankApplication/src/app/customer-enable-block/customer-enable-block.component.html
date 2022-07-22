@@ -1,0 +1,39 @@
+<h1>
+    Enable and Block Customer
+</h1>
+
+<table mat-table [dataSource]="customers" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+          <th mat-header-cell *matHeaderCellDef> Date </th>   
+    <!-- Date Column -->
+    <ng-container matColumnDef="Customer Name">
+      <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.fullname}} </td>
+    </ng-container>
+  
+    <!-- Reference Column -->
+    <ng-container matColumnDef="Customer ID">
+      <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+      <td mat-cell *matCellDef="let customers"> {{customers.userId}} </td>
+    </ng-container>
+  
+    <!-- Amount Column -->
+    <ng-container matColumnDef="Enable Disable">
+      <th mat-header-cell *matHeaderCellDef> Enable Disable </th>
+      <td mat-cell *matCellDef="let customers"> 
+        <mat-slide-toggle [checked] = "customers.active" 
+        (click)="changeStatus(customers.active, customers.userId)">
+     
+        </mat-slide-toggle> 
+      </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- displayedColumns: string[] = ['Customer Name', 'Customer ID', 'Enable Disable']; -->

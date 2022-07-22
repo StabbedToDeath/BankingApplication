@@ -1,0 +1,55 @@
+<p>Add beneficiary</p>
+<div>
+<form #beneficiaryForm = "ngForm" (ngSubmit) = createBeneficiary(beneficiaryForm.value)>
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Enter Deposit</mat-label>
+  <input matInput name="accountNumber" ngModel>
+</mat-form-field><br>
+
+
+<p> Select Type of Account</p>
+<mat-radio-group aria-label="Select an option">
+  <mat-radio-button value="1">Savings Account</mat-radio-button>
+  <input matInput name="SB" ngModel>
+  <mat-radio-button value="2">Current Account</mat-radio-button>
+  <input matInput name="CA" ngModel>
+</mat-radio-group>
+<button mat-button color="primary">Submit</button>
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div *ngFor="let user of user" class="item">
+<p>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>{{user.userId}}</mat-label>
+      <input matInput placeholder="Placeholder">
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-hint>Hint</mat-hint>
+    </mat-form-field>
+
+</p>
+  
+  <p> Select Type of Account</p>
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1">Savings Account</mat-radio-button>
+    <mat-radio-button value="2">Current Account</mat-radio-button>
+  </mat-radio-group>
+  <button mat-button color="primary">Submit</button>
+
+</div> -->

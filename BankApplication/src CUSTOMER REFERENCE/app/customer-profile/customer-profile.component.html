@@ -1,0 +1,66 @@
+
+<div>
+    
+    <form #updateForm = "ngForm" (ngSubmit) = updateCustomer(updateForm.value)>
+         <!--CUSTOMER ID HAS TO SHOW BUT CANT BE FILLED OUT-->
+        <mat-form-field appearance="fill">
+            <mat-label>Customer ID:</mat-label>
+            <input matInput name="username" ngModel>
+        </mat-form-field><br>
+         <!--TO HERE-->
+        <mat-form-field appearance="fill">
+            <mat-label>FullName:</mat-label>
+            <input matInput name="fullname" ngModel>
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone:</mat-label>
+            <input matInput name="phone" ngModel>
+        </mat-form-field><br>
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>PAN</mat-label>
+            FIX HERE
+            <input matInput name="pan" ngModel>
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>ADDHAR</mat-label>
+             FIX HERE
+            <input matInput name="addhar" ngModel>
+        </mat-form-field><br> -->
+
+
+
+        
+            <!-- <input type="file" (change)="onFileChanged($event)"> -->
+            <!--FIX HERE-->
+            <!-- <input type="file" 
+            id="file1" 
+            name="upload">
+            <input matInput name="uploadP" ngModel>
+      <br>
+        
+            
+            <input type="file" 
+            id="file1" 
+            name="upload">
+            <input matInput name="uploadA" ngModel>
+        <br> -->
+        <!-- <mat-form-field appearance="fill">
+            <mat-label>Select Security Question</mat-label>
+           
+            <mat-select>
+                <mat-option *ngFor="let Questions of questions" [value]="Questions.question">          
+                </mat-option>
+              </mat-select>
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Answer</mat-label> -->
+             <!--FIX HERE-->
+            <!-- <input matInput name="securityA" ngModel>
+        </mat-form-field> -->
+
+        <button>Submit</button>
+
+
+    </form>
+
+</div>

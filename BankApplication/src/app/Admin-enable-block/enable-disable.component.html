@@ -1,0 +1,37 @@
+<h1>
+    Staff List
+ </h1>
+ 
+ <table mat-table [dataSource]="staffs" class="mat-elevation-z8">
+ 
+     <!--- Note that these columns can be defined in any order.
+           The actual rendered columns are set as a property on the row definition" -->
+           <th mat-header-cell *matHeaderCellDef> Date </th>   
+     <!-- Date Column -->
+     <ng-container matColumnDef="staffName">
+       <th mat-header-cell *matHeaderCellDef> Staff Name </th>
+       <td mat-cell *matCellDef="let staffs"> {{staffs.fullname}} </td>
+     </ng-container>
+   
+     <!-- Reference Column -->
+     <ng-container matColumnDef="staffUser">
+       <th mat-header-cell *matHeaderCellDef> Staff Username </th>
+       <td mat-cell *matCellDef="let staffs"> {{staffs.username}} </td>
+     </ng-container>
+   
+     <!-- Cr/Db Column -->
+     <ng-container matColumnDef="approved">
+       <th mat-header-cell *matHeaderCellDef> Enable Disable </th>
+       <td mat-cell *matCellDef="let staffs"> 
+        <mat-slide-toggle [checked] = "staffs.active" 
+        (click)="changeStatus(staffs.active, staffs.userId)">
+     
+        </mat-slide-toggle> 
+    </td>
+     </ng-container>
+ 
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> xd
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   </table>
+
+   <!-- displayedColumns:string[] = ['staffName', 'staffUser','approved']; -->
