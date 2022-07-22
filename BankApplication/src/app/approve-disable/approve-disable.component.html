@@ -1,0 +1,39 @@
+<h1>
+   APPROVVVEOVEOVEOEOVOVEOVEOEVOVE
+</h1>
+
+<table mat-table [dataSource]="accounts" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+          <th mat-header-cell *matHeaderCellDef> Date </th>   
+    <!-- Date Column -->
+    <ng-container matColumnDef="accountNumber">
+      <th mat-header-cell *matHeaderCellDef> Account Number </th>
+      <td mat-cell *matCellDef="let accounts"> {{accounts.accountNumber}} </td>
+    </ng-container>
+  
+    <!-- Reference Column -->
+    <ng-container matColumnDef="accountType">
+      <th mat-header-cell *matHeaderCellDef> Account Type </th>
+      <td mat-cell *matCellDef="let accounts"> {{accounts.accountType}} </td>
+    </ng-container>
+  
+    <!-- Amount Column -->
+    <ng-container matColumnDef="accountBalance">
+      <th mat-header-cell *matHeaderCellDef> Balance </th>
+      <td mat-cell *matCellDef="let accounts"> {{accounts.accountBalance}} </td>
+    </ng-container>
+  
+    <!-- Cr/Db Column -->
+    <ng-container matColumnDef="approved">
+      <th mat-header-cell *matHeaderCellDef> Approved </th>
+      <td mat-cell *matCellDef="let accounts"> <button mat-raised-button color="primary" (click) = "approveAccount(accounts.accountNumber)">Activate</button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> xd
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- displayedColumns: string[] = ['accountNumber', 'accountType', 'accountBalance', 'approved'] -->
+

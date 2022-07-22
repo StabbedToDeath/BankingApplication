@@ -1,0 +1,49 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+a{
+    text-decoration: none;
+    margin-right: 10px;
+    color: white;
+}
+
+.toolbar{
+    background-color: cornflowerblue;
+    color: white;
+}
+
+.toolbar-button
+{
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.example-small-box, .example-large-box, .example-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.example-box{
+    height: 50%;
+    width: 90%;
+}
+
+.example-small-box {
+    /* height: 100px;
+    width: 100px; */
+    height: 50%;
+    width: 50%;
+}
+
+.example-large-box {
+    /* height: 300px;
+    width: 300px; */
+    height: 50%;
+    width: 50%;
+}

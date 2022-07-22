@@ -1,0 +1,35 @@
+.button-stretched{
+    width: 200px;
+    margin-left: 50px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+.button{
+    margin: 5px;
+    border-left-width: 500px ;
+    width:500px;
+   
+}
+.example-card {
+    max-width: 400px;
+    margin-left: 500px ;
+    border-width: 5px;
+  }
+
+  .container {
+    border-style: solid;
+    width: 500px;
+    margin-left: 550px;
+  }
+
+  input{
+    height: 60px;
+    width: 350px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
+    font-size: 18px;
+    
+  }

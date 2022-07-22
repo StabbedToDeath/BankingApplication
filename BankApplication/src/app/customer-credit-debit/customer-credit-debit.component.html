@@ -1,0 +1,33 @@
+<p>customer-credit-debit works!</p>
+
+<div>
+    <form class = form #transferForm = "ngForm" (ngSubmit) = transfer(transferForm.value)>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Account Number</mat-label>
+          <input matInput name = "fromAcc" ngModel>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>To Account Number</mat-label>
+            <input matInput name = "toAcc" ngModel>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput name = "amount" ngModel>
+        </mat-form-field><br>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Remarks</mat-label>
+            <input matInput name = "reason" ngModel>
+          </mat-form-field><br>
+
+        <button class = form-button mat-raised-button color="primary"
+        mat-stroked-button (click)="openSnackBar(transferForm.value)"
+        >Transfer</button>
+    </form>
+    <br>
+
+
+</div>

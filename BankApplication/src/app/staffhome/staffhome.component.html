@@ -1,0 +1,58 @@
+<p>staffhome works!</p>
+<!-- <img src = "assets/images/ROXXY.png"> -->
+
+<mat-tab-group dynamicHeight>
+
+
+    <mat-tab label="By Account Number" routerLink= "/customer-account">
+
+      <div class="example-box mat-elevation-z4">
+            <app-customer-account></app-customer-account>
+      </div>
+
+    </mat-tab>
+
+
+    <mat-tab label="Approve Beneficiary" routerLink = "/beneficiary">
+
+      <div class="example-box mat-elevation-z4">
+            <app-beneficiary-approve-modify></app-beneficiary-approve-modify>
+      </div>
+
+    </mat-tab>
+
+    <mat-tab label="Approve Account">
+
+        <div class="example-box mat-elevation-z4">
+          <app-approve-disable></app-approve-disable>
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Enable / Block Customer">
+
+        <div class="example-box mat-elevation-z4">
+          <app-customer-enable-block></app-customer-enable-block>
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Transfer">
+
+      <div class="example-box mat-elevation-z4">
+        <app-customer-credit-debit></app-customer-credit-debit>
+      </div>
+
+  </mat-tab>
+
+
+</mat-tab-group>
+
+<!-- <nav mat-tab-nav-bar class="toolbar">
+
+  <a mat-tab-link  *ngFor="let link of links"
+     (click)="activeLink = link"
+     [active]="activeLink == link"> {{ link }} </a>
+
+</nav> -->
+
