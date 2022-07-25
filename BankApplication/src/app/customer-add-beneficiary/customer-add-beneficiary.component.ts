@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
   product:any;
   user:any;
   accountType: string[] = ['CA', 'SB'];
-  constructor(private http: HttpClient, private customerService:CustomerService, private router:Router) { }
+  constructor(private _snackBar: MatSnackBar, private http: HttpClient, private customerService:CustomerService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +26,11 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
         alert("well done")
       }
     })
+  }
+
+  openSnackBar()
+  {
+    this._snackBar.open("Waiting for Approval", "Dismiss");
   }
 
 
