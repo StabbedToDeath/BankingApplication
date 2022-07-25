@@ -4,11 +4,13 @@ public class JWTResponse {
 	
 	private String token;
 	private String role;
+	private int username;
 
-	public JWTResponse(String token, String role) {
+	public JWTResponse(String token, int username, String role) {
 		super();
 		this.token = token;
 		this.role = role;
+		this.username = username;
 	}
 
 	public JWTResponse() {
@@ -24,11 +26,23 @@ public class JWTResponse {
 		this.token = token;
 	}
 
-	
-	 public String getRole() { return role; }
-	 
-	 public void setRole(String role) { this.role = role; }
+	public String getRole() {
+		return role;
+	}
 
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public int getUsername() {
+		return username;
+	}
+
+	public void setUsername(int username) {
+		this.username = username;
+	}
+	
+	
 	
 	
 	

@@ -17,6 +17,7 @@ import com.learning.entity.CustomUserDetails;
 import com.learning.entity.JWTRequest;
 import com.learning.entity.JWTResponse;
 import com.learning.service.CustomUserDetailsService;
+import com.learning.service.UserService;
 import com.learning.util.JWTUtil;
 
 @RestController
@@ -33,17 +34,21 @@ public class JWTController {
 	@Autowired
 	JWTUtil jwtUtil;
 	
+	@Autowired
+	UserService uService;
+	
 	@PostMapping("/authenticate")
 	public ResponseEntity<?> generateToken(@RequestBody JWTRequest jwtRequest){
 		
 		System.out.println("Im here");
 		authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(), jwtRequest.getPassword()));
 		try {
+			System.out.println(jwtRequest.getUsername());
 			CustomUserDetails userDetails =  (CustomUserDetails) cudService.loadUserByUsername(jwtRequest.getUsername());
 			
 			String token = jwtUtil.generateToken(userDetails);
 			
-			return ResponseEntity.ok(new JWTResponse(token, userDetails.getRole()));
+			return ResponseEntity.ok(new JWTResponse(token, uService.getUserByUsername(userDetails.getUsername()).getUserId(),  userDetails.getRole()));
 			
 		} catch (UsernameNotFoundException e) {
 			return new ResponseEntity<String>("Invalid Token", HttpStatus.NOT_ACCEPTABLE);

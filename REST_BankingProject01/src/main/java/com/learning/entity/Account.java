@@ -18,7 +18,10 @@ public class Account {
 	
 	public enum AccountType{
 		SB,
-		CA
+		CA;
+	public String getAccountType() {
+			return this.name();
+		}
 	}
 	
 	@Id

@@ -20,11 +20,9 @@ public class CustomUserDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println("In Service");
-		try {
-			return new CustomUserDetails(uService.getUserByUsername(username));
-		} catch (NullPointerException e) {
-			throw new UsernameNotFoundException("Username nahi hain badwe");
-		}
+		if (uService.getUserByUsername(username) == null) 
+			throw new UsernameNotFoundException("Incorrect Credentials entered");
+		return new CustomUserDetails(uService.getUserByUsername(username));
 			
 	}
 

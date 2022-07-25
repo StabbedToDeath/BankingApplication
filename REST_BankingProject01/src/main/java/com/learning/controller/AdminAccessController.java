@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learning.entity.Customer;
 
 import com.learning.entity.Staff;
+import com.learning.entity.User;
 import com.learning.service.StaffService;
+import com.learning.service.UserService;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -27,22 +30,24 @@ public class AdminAccessController {
 
 	@Autowired
 	StaffService sService;
+	
+	@Autowired
+	UserService service;
 
 	// create Staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/staff")
 	public ResponseEntity<Staff> createStaff(@RequestBody Staff staff) {
 		boolean fake = false;
 		List<Staff> allStaff = sService.getAllStaff();
-
+		System.out.println(staff.getUsername());
 		for(Staff employee : allStaff) {
 			if (employee.getUsername().matches(staff.getUsername())) {
 				fake = true;
+				System.out.println();
 				break;
 			}
 		}
 		if (!fake) {
-			//staff.setStatus(Status.Enable);
 			staff.setRole("Staff");
 			sService.addStaff(staff);
 			return new ResponseEntity<Staff>(HttpStatus.CREATED);
@@ -52,7 +57,6 @@ public class AdminAccessController {
 			
 
 	// list all staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/staff")
 	public ResponseEntity<List<Staff>> getAllStaff() {
 		try {
@@ -63,7 +67,6 @@ public class AdminAccessController {
 	}
 
 	// enable/disable the staff
-	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/staff")
 	public ResponseEntity<String> changeStatus(@RequestBody Staff staff) {
 		try {
@@ -77,7 +80,6 @@ public class AdminAccessController {
 		}
 	}
 
-	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/authenticate")
 	public ResponseEntity<String> authenticate(@RequestBody Customer customer) {
 		if (customer.getUsername().matches("Pranav")) {
@@ -86,5 +88,12 @@ public class AdminAccessController {
 		}
 		return new ResponseEntity<String>("Not registered", HttpStatus.FORBIDDEN);
 
+	}
+	
+	@GetMapping("/test")
+	public User addAdmin() {
+		User admin = new User("admin", "Pranav", "password", "Admin", true);
+		service.addUser(admin);
+		return admin;
 	}
 }

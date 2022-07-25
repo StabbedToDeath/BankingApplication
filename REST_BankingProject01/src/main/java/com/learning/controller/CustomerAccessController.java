@@ -52,6 +52,9 @@ public class CustomerAccessController {
 	@PostMapping("/register")
 	public ResponseEntity<Customer> registerCustomer(@RequestBody Customer customer) {
 		
+		//SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+		//sdf.format(new Date());
+		
 		customer.setCreated(new Date());
 		customer.setActive(true);
 		customer.setRole("Customer");
