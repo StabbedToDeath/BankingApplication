@@ -18,6 +18,7 @@ import { CustomerTransferMoneyComponent } from './customer-transfer-money/custom
 import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 
+
 const routes: Routes = [
   {
     path: "beneficiary",

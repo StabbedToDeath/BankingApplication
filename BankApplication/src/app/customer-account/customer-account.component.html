@@ -2,15 +2,17 @@
     Search Account by Account number
 </h1>
 
-<img src = "assets/images/obama-cube.gif">
 
 <div>
     <form class = form #accNo = "ngForm" (ngSubmit) = getStatement(accNo.value)>
         <mat-form-field appearance="fill">
           <mat-label>Account Number</mat-label>
-          <input matInput name = "accNo" ngModel>
+          <input matInput required name = "accNo" ngModel>
         </mat-form-field>
-        <button class = form-button mat-raised-button color="primary">Go</button>
+        <button class = form-button 
+          mat-raised-button color="primary"
+          [disabled] = "!accNo.form.valid"
+        >Go</button>
     </form>
     <br>
 
@@ -27,8 +29,8 @@
   <mat-card class="card">
     <mat-card-title-group>
       <mat-card-title>Account Details</mat-card-title>
-      <mat-card-subtitle>Small</mat-card-subtitle>
-      <img src = "assets/images/batch62.gif" >
+      <!-- <mat-card-subtitle>Small</mat-card-subtitle> -->
+
     </mat-card-title-group>
     <mat-card-content>
       {{"Account Number: " +  account.accountNumber}}<p></p>
@@ -37,6 +39,8 @@
     </mat-card-content>
   </mat-card>
 </div>
+
+<!-- <img src = "assets/images/batch62.gif" > -->
 
 <table mat-table [dataSource]="transactions" class="mat-elevation-z8">
 

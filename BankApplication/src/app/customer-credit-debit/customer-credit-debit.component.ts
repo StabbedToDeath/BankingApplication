@@ -25,9 +25,9 @@ export class CustomerCreditDebitComponent implements OnInit {
       });
   }
 
-  openSnackBar(message:any)
+  openSnackBar()
   {
-    this._snackBar.open(message);
+    this._snackBar.open("Success!", "Dismiss");
   }
 
   
