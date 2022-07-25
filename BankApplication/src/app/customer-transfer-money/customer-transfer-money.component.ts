@@ -25,6 +25,7 @@ transaction:any;
 transfer(form:any){
   this.customerService.transfer(form).subscribe(res=>{
     this.user = res;
+    alert("Funds transferred!!")
     window.location.reload();
   })
 }

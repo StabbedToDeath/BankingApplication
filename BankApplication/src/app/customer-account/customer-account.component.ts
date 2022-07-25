@@ -21,20 +21,20 @@ export class CustomerAccountComponent implements OnInit {
   onStart = true;
 
   ngOnInit(): void {
-    
+
   }
 
 
   getStatement(form:any)
   {
     this.onStart = false;
-    this.staffService.getStatement(form.accNo).subscribe(res => 
+    this.staffService.getStatement(form.accNo).subscribe(res =>
     {
       console.log(res);
        this.account = res;
        this.transactions = this.account.transactions;
        this.ngOnInit();
-    
+
     });
   }
 

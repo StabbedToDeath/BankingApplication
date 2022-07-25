@@ -17,15 +17,17 @@ export class CustomerRemoveBeneficiaryComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerService.getBeneficiary(localStorage.getItem("cId")).subscribe(res=>{
+      console.log(res);
       this.beneficiary = res;
     })
 
 
   }
 
-  deleteBeneficiary(cId:any, bId:any){
-    this.customerService.deleteBeneficiary(cId, bId).subscribe(res=> {
+  deleteBeneficiary(bId:any){
+    this.customerService.deleteBeneficiary(localStorage.getItem("cId"), bId).subscribe(res=> {
       this.beneficiary = res;
+      alert("Beneficiary deleted")
       window.location.reload();
     })
   }

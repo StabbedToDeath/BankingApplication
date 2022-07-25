@@ -34,13 +34,6 @@ export class CustomerDashboardComponent implements OnInit {
       this.product = res;
     })
   }
-
-  updateCustomer(cId:any){
-    this.customerService.updateCustomer(cId).subscribe(res=>{
-      this.product = res;
-    })
-
-  }
   getAccountById(cId:any, aId:any){
     this.customerService.getAccountById(cId, aId).subscribe(res=>{
       this.product = res;

@@ -19,7 +19,7 @@ export class StaffService {
 
   changeStatus(body:any)  //FIELDS
   {
-    return this.http.put(`${this.baseurl}customer`, body  );
+    return this.http.put(`${this.baseurl}customer`, body);
   }
 
   getCustomer(id:any)
@@ -58,12 +58,6 @@ export class StaffService {
     return this.http.put(`${this.baseurl}transfer`, transaction, {responseType: "text"});
   }
 
-
-  // getAllStaffService(): Observable<Staff[]>{
-  //   console.log('getAllStaffService is invoke..')
-
-  //   return this.http.get<Staff[]>("http://localhost:8080/api/admin/getAllStaff");
-  // }
 }
 
 

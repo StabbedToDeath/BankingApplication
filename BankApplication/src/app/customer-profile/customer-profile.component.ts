@@ -15,6 +15,7 @@ interface  Questions{
 export class CustomerProfileComponent implements OnInit {
   product:any;
   user:any;
+  custId:any = localStorage.getItem('cId');
   constructor(private customerService:CustomerService, private router:Router) { }
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class CustomerProfileComponent implements OnInit {
   }
 
   updateCustomer(form:any){
-    this.customerService.updateCustomer(form).subscribe(res=>{
+    this.customerService.updateCustomer(localStorage.getItem('cId'), form).subscribe(res=>{
       this.product = res;
     })
 
