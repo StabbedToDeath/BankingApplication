@@ -17,6 +17,8 @@ import { CustomerRemoveBeneficiaryComponent } from './customer-remove-beneficiar
 import { CustomerTransferMoneyComponent } from './customer-transfer-money/customer-transfer-money.component';
 import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { LoginComponent } from './login/login.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 
 const routes: Routes = [
   {
@@ -47,12 +49,6 @@ const routes: Routes = [
     path: "approve-disable",
     component: ApproveDisableComponent
   },
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************  
   {
     path:'viewstaff',         //Get all Staff + enable disable
     component:EnableDisableComponent
@@ -70,13 +66,10 @@ const routes: Routes = [
     path: 'adminDashboard',           //ADMIN Home
     component:AdminDashboardComponent
   },
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
+  {
+    path:"customerDashboard",
+    component:CustomerDashboardComponent
+  },
 {
   path:"customerWHOAMI",
   component:CustomerWHOMIComponent
@@ -106,6 +99,10 @@ const routes: Routes = [
 {
 path:"customerProfile",
 component:CustomerProfileComponent
+},
+{
+  path:"login",
+  component:LoginComponent
 }
 
 
