@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { StaffService } from '../staff.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class BeneficiaryApproveModifyComponent implements OnInit {
   displayedColumns: string [] = ["Customer", "beneficiaryName+AcNo", "beneficiaryAddedDate", "approved" ];
   beneficaries:any = [];
 
-  constructor(private staffService:StaffService ) {}
+  constructor(private _snackBar: MatSnackBar, private staffService:StaffService ) {}
 
   ngOnInit(): void {
     this.getNotApprovedBens();
@@ -39,6 +40,13 @@ export class BeneficiaryApproveModifyComponent implements OnInit {
       {
         this.ngOnInit();
       });
+
+      
+  }
+
+  openSnackBar()
+  {
+    this._snackBar.open("Approved!", "Dismiss");
   }
 
 }

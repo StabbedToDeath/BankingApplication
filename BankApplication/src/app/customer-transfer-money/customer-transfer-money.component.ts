@@ -13,7 +13,7 @@ displayedColumns: string[] = ['Ac No', 'Balance', 'Ac Type', 'Select']
 account:any =[];
 user:any;
 transaction:any;
-  constructor(private customerService:CustomerService) { }
+  constructor(private customerService:CustomerService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.customerService.getCustomerById(localStorage.getItem("cId")).subscribe(res=>{
@@ -31,9 +31,9 @@ transfer(form:any){
 }
 
 
-// openSnackBar(message:any){
-//   this._snackBar.open(message);
-// }
+openSnackBar(){
+  this._snackBar.open("Success!", "Dismiss");
+}
 
 
 }
