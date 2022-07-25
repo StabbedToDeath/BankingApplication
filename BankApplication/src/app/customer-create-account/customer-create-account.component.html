@@ -20,7 +20,8 @@
   <button
     class = form-button
     mat-raised-button color ="primary"
-    [disabled] = "!registerForm.form.valid">
+    [disabled] = "!registerForm.form.valid"
+    (click)="openSnackBar()">
     Submit
   </button>
 </form>

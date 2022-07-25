@@ -9,6 +9,7 @@
         <span class="example-spacer"></span>
 
         <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogin()" *ngIf="!this.userService.isLoggedIn">Login </button>
+        <a routerLink = "customerlogin" >Crust</a>
         <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogout()" *ngIf="this.userService.isLoggedIn">LogOut</button>
     </mat-toolbar>
 </h1>
