@@ -60,6 +60,7 @@ public class StaffAccessController {
 	//enable/disable status of Customer Login
 	@PutMapping("/customer")
 	public ResponseEntity<Object> changeStatus(@RequestBody Customer customer) {
+		System.out.println(customer.isActive());
 		try {
 			Customer toUpdate = cService.getCustomer(customer.getUserId());
 			toUpdate.setActive(customer.isActive());
@@ -105,7 +106,9 @@ public class StaffAccessController {
 	public ResponseEntity<String> approveBeneficiary(@RequestBody Beneficiary beneficiary) {
 		try {
 			aService.getAccount(beneficiary.getBeneficaryAcNo());
-			bService.updateBeneficiary(beneficiary);
+			Beneficiary toUpdate = bService.getBeneficiary(beneficiary.getBeneficaryId());
+			toUpdate.setApproved("Yes");
+			bService.updateBeneficiary(toUpdate);
 			return new ResponseEntity<String>(HttpStatus.OK);
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<String>("Approving of account was not successfull", HttpStatus.NOT_FOUND);

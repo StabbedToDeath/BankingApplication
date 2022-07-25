@@ -30,6 +30,7 @@ import com.learning.service.AccountService;
 import com.learning.service.BeneficiaryService;
 import com.learning.service.CustomerService;
 import com.learning.service.TransactionService;
+import com.learning.service.UserService;
 
 @RestController
 @RequestMapping("/api/customer")
@@ -47,6 +48,9 @@ public class CustomerAccessController {
 	
 	@Autowired
 	TransactionService tService;
+	
+	@Autowired
+	UserService uService;
 	
 	//@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping("/register")
@@ -69,7 +73,7 @@ public class CustomerAccessController {
 
 	}
 
-	@GetMapping("{customerId}")
+	@GetMapping("/{customerId}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable(name = "customerId") Integer custId) {
 		return new ResponseEntity<Customer>(cService.getCustomer(custId), HttpStatus.valueOf(200));
 	}
@@ -80,6 +84,7 @@ public class CustomerAccessController {
 		try {
 			
 			Customer toUpdate = cService.getCustomer(custId);
+			toUpdate.setUsername(customer.getUsername());
 			toUpdate.setFullname(customer.getFullname());
 			toUpdate.setPhone(customer.getPhone());
 			
@@ -125,7 +130,7 @@ public class CustomerAccessController {
 			@PathVariable(name = "accountId") Integer accountId) {
 
 		try {
-
+			
 			List<Account> accounts = cService.getCustomer(custId).getAccount();
 
 			ListIterator<Account> lt = accounts.listIterator();
@@ -168,7 +173,7 @@ public class CustomerAccessController {
 
 		} catch (NoSuchElementException e) {
 			return new ResponseEntity<String>(
-					"Sorry beneficiary with " + account.getAccountNumber() + " not added", HttpStatus.NOT_FOUND);
+					"Sorry beneficiary with " + account.getAccountNumber() + " not added cuz something was not found!", HttpStatus.NOT_FOUND);
 		}
 	}
 

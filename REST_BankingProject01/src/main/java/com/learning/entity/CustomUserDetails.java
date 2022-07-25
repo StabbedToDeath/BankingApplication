@@ -14,6 +14,7 @@ public class CustomUserDetails implements UserDetails {
 	public CustomUserDetails(User user) {
 		this.user = user;
 		System.out.println(user.getRole());
+		System.out.println(user.isActive());
 	}
 	
 	public String getRole() {
@@ -44,7 +45,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return user.isActive();
+		return true;
 	}
 
 	@Override
