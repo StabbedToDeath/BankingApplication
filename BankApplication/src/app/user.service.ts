@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +19,13 @@ export class UserService {
     return this.http.post("http://localhost:8080/authenticate", form).pipe(
       catchError(err => this.catchAuthError(err)),
     );
+  public isLoggedIn = false;
+  baseUrl:string = "http://localhost:8080/";
+
+  constructor(private http:HttpClient) { }
+
+  generateToken(form:any) {
+    return this.http.post(`${this.baseUrl}`+"authenticate", form);
   }
 
   validateToken(token:any) {

@@ -1,0 +1,23 @@
+<body>
+  <h1>Please enter login credentials</h1>
+  <div>
+    <form #loginForm="ngForm" (ngSubmit)=login(loginForm.value)>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter Username</mat-label>
+        <input required matInput name=uname ngModel>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput required [type]="hide ? 'password' : 'text'" name=pword ngModel>
+        <button type='button' mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+    </form>
+  </div>
+</body>
+

@@ -44,6 +44,7 @@ import { CustomerWHOMIComponent } from './customer-whomi/customer-whomi.componen
 import { ViewAccountComponent } from './view-account/view-account.component';
 import { StaffloginComponent } from './stafflogin/stafflogin.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -73,6 +74,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
     ViewAccountComponent,
     StaffloginComponent,
     AdminloginComponent,
+    LoginComponent,
 
   ],
   imports: [

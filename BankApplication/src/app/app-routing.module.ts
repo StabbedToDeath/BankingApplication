@@ -19,7 +19,8 @@ import { CustomerViewStatementComponent } from './customer-view-statement/custom
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { StaffloginComponent } from './stafflogin/stafflogin.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
-
+import { LoginComponent } from './login/login.component';
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 
 const routes: Routes = [
   {
@@ -50,12 +51,6 @@ const routes: Routes = [
     path: "approve-disable",
     component: ApproveDisableComponent
   },
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
   {
     path:'viewstaff',         //Get all Staff + enable disable
     component:EnableDisableComponent
@@ -73,13 +68,10 @@ const routes: Routes = [
     path: 'adminDashboard',           //ADMIN Home
     component:AdminDashboardComponent
   },
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
-// *********************************************************************
+  {
+    path:"customerDashboard",
+    component:CustomerDashboardComponent
+  },
 {
   path:"customerWHOAMI",
   component:CustomerWHOMIComponent
@@ -117,6 +109,8 @@ component:CustomerProfileComponent
 {
   path: "adminlogin",
   component:AdminloginComponent
+  path:"login",
+  component:LoginComponent
 }
 
 ];
