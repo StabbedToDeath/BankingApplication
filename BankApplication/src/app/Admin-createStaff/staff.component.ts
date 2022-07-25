@@ -24,7 +24,11 @@ export class StaffComponent implements OnInit {
     this.adminService.createStaff(staff).subscribe(res=>
       {
         console.log("nice");
-        window.location.reload();
+        location.reload();
+        // this.router.navigateByUrl("/sample",{
+        //   skipLocationChange:true
+        // })
+        // this.router.navigate([("/adminDashboard")])
       });
   }
 

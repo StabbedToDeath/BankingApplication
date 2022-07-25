@@ -47,6 +47,7 @@ import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerloginComponent } from './customerlogin/customerlogin.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { ZsampleComponent } from './zsample/zsample.component';
 
 
 
@@ -79,6 +80,7 @@ import { RegisterCustomerComponent } from './register-customer/register-customer
     StaffloginComponent,
     CustomerloginComponent,
     RegisterCustomerComponent,
+    ZsampleComponent,
 
   ],
   imports: [

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ApproveDisableComponent } from './approve-disable/approve-disable.component';
 import { BeneficiaryApproveModifyComponent } from './beneficiary-approve-modify/beneficiary-approve-modify.component';
@@ -25,6 +25,7 @@ import { CustomerloginComponent } from './customerlogin/customerlogin.component'
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
 import { AuthGuard } from './auth.guard';
+import { ZsampleComponent } from './zsample/zsample.component';
 
 const routes: Routes = [
   {
@@ -146,6 +147,10 @@ component:CustomerProfileComponent,
 }, {
   path:'',
   component:CustomerloginComponent
+},
+{
+  path: 'sample',
+  component:ZsampleComponent
 }
 
 ];
