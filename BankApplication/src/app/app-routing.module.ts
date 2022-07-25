@@ -24,23 +24,28 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
 import { CustomerloginComponent } from './customerlogin/customerlogin.component';
 import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
     path: "beneficiary",
-    component: BeneficiaryApproveModifyComponent
+    component: BeneficiaryApproveModifyComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "customer-account" ,
-    component: CustomerAccountComponent
+    component: CustomerAccountComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "customer-credit-debit",
-    component: CustomerCreditDebitComponent
+    component: CustomerCreditDebitComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "customer-enable-block",
-    component: CustomerEnableBlockComponent
+    component: CustomerEnableBlockComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "staffheader",
@@ -48,62 +53,75 @@ const routes: Routes = [
   },
   {
     path: "staffhome",
-    component: StaffhomeComponent
+    component: StaffhomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "approve-disable",
-    component: ApproveDisableComponent
+    component: ApproveDisableComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'viewstaff',         //Get all Staff + enable disable
-    component:EnableDisableComponent
+    component:EnableDisableComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'createStaff',             //Create Staff
-    component:StaffComponent
+    component:StaffComponent,
+    canActivate: [AuthGuard]
   },
-  // {
-  //   path:'',
-  //   redirectTo:'staff',
-  //   pathMatch:'full'
-  // },
+  {
+    path:'',
+    redirectTo:'customerlogin',
+    pathMatch:'full'
+  },
   {
     path: 'adminDashboard',           //ADMIN Home
-    component:AdminDashboardComponent
+    component:AdminDashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:"customerDashboard",
-    component:CustomerDashboardComponent
+    component:CustomerDashboardComponent,
+    canActivate: [AuthGuard]
   },
 {
   path:"customerWHOAMI",
-  component:CustomerWHOMIComponent
+  component:CustomerWHOMIComponent,
+    canActivate: [AuthGuard]
 },
 {
   path:"CreateAccount",
-  component:CustomerCreateAccountComponent
+  component:CustomerCreateAccountComponent,
+    canActivate: [AuthGuard]
 
 },
 {
   path:"addBeneficiary",
-  component:CustomerAddBeneficiaryComponent
+  component:CustomerAddBeneficiaryComponent,
+    canActivate: [AuthGuard]
 },
 {
   path:"removeBeneficiary",
-  component:CustomerRemoveBeneficiaryComponent
+  component:CustomerRemoveBeneficiaryComponent,
+    canActivate: [AuthGuard]
 
 },
 {
   path:"transferMoney",
-  component:CustomerTransferMoneyComponent
+  component:CustomerTransferMoneyComponent,
+    canActivate: [AuthGuard]
 },
 {
   path:"viewStatement",
-  component:CustomerViewStatementComponent
+  component:CustomerViewStatementComponent,
+    canActivate: [AuthGuard]
 },
 {
 path:"customerProfile",
-component:CustomerProfileComponent
+component:CustomerProfileComponent,
+    canActivate: [AuthGuard]
 },
 {
   path: "stafflogin",
@@ -123,7 +141,11 @@ component:CustomerProfileComponent
 },
 {
   path:"viewAccount/:cId/account/:aId",
-  component:ViewAccountComponent
+  component:ViewAccountComponent,
+    canActivate: [AuthGuard]
+}, {
+  path:'',
+  component:CustomerloginComponent
 }
 
 ];

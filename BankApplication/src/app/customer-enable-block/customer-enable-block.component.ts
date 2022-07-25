@@ -22,7 +22,7 @@ export class CustomerEnableBlockComponent implements OnInit {
   constructor(private router: Router, private staffService:StaffService, ) { }
 
   ngOnInit(): void {
-    this.staffService.getAllCustomer().subscribe(res=> 
+    this.staffService.getAllCustomer().subscribe(res=>
       {
         this.customers = res;
       })
@@ -37,11 +37,10 @@ export class CustomerEnableBlockComponent implements OnInit {
     }
     console.log(body);
 
-    this.staffService.changeStatus(body).subscribe(res =>
-      
-      {
-        this.ngOnInit();
-      })
+    this.staffService.changeStatus(body).subscribe(res => {
+      console.log(res);
+      this.ngOnInit();
+    })
   }
 
 

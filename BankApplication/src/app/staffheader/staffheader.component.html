@@ -1,16 +1,20 @@
 <h1>
     <mat-toolbar class = toolbar>
 
-        <span><a routerLink = "staffhome" ><img class = "header-image" src = "assets/images/obama-cube.gif"></a></span>
-        <span><a routerLink = "staffhome" >Staff Dashboard</a></span>
-        <span><a routerLink = "adminDashboard" >Back to HomePage</a></span>
-        <span><a routerLink = "customerDashboard" ><img class = "header-image" src = "assets/images/obama-cube.gif"></a></span>
+      <span><a routerLink="/customerlogin">Home Page</a></span>
+
 
         <span class="example-spacer"></span>
 
+<<<<<<< HEAD
         <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogin()" *ngIf="!this.userService.isLoggedIn">Login </button>
         <a routerLink = "customerlogin" >Crust</a>
         <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogout()" *ngIf="this.userService.isLoggedIn">LogOut</button>
+=======
+        <button class = toolbar-button mat-raised-button color="primary" (click) = "staffLogin()" *ngIf="!this.userService.isLoggedIn">Staff Login</button>
+        <button class=toolbar-button mat-raised-button color="primary" (click)="adminLogin()"*ngIf="!this.userService.isLoggedIn">Admin Login</button>
+        <button class = toolbar-button mat-raised-button color="primary" (click) = "logout()" *ngIf="this.userService.isLoggedIn">LogOut</button>
+>>>>>>> e967d4c0e23da34df118ffb752e9879abf2d0590
     </mat-toolbar>
 </h1>
 

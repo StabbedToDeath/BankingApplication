@@ -22,7 +22,8 @@ customer:any;
 
      this.customerService.createAccount(localStorage.getItem("cId"), form).subscribe(res=>{
       this.product = res;
-      window.location.reload();
+      this.ngOnInit()
+      //window.location.reload();
      })
 
   }

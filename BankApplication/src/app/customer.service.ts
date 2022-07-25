@@ -38,8 +38,8 @@ export class CustomerService {
   getCustomerById(cId:any){
     return this.http.get(`${this.baseurl}`+cId);
   }
-  updateCustomer(cId:any){
-    return this.http.put(`${this.baseurl}`, cId);
+  updateCustomer(cId:any, form:any){
+    return this.http.put(`${this.baseurl}`+cId, form);
   }
 
   getAccountById(cId:any, aId:any){
@@ -53,7 +53,7 @@ export class CustomerService {
 
   }
   deleteBeneficiary(cId:any, bId:any){
-    return this.http.delete(`${this.baseurl}`+cId+`/beneficiary/`+bId);
+    return this.http.delete(`${this.baseurl}`+cId+`/beneficiary/`+bId, {responseType: 'text'});
   }
   // deleteBeneficiary(){
   //   return this.http.delete(`${this.baseurl}beneficiary/`);

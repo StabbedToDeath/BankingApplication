@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,17 +9,22 @@ import { UserService } from '../user.service';
 })
 export class StaffheaderComponent implements OnInit {
 
-  constructor(public userService:UserService) { }
+  constructor(public userService:UserService, private router:Router) { }
 
   ngOnInit(): void {
   }
 
-  stafflogin()
+  staffLogin()
   {
-
+    this.router.navigate([("/stafflogin")]);
   }
 
-  stafflogout()
+  adminLogin()
+  {
+    this.router.navigate([("/adminlogin")]);
+  }
+
+  logout()
   {
     this.userService.logout();
   }

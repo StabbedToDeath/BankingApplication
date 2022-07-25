@@ -3,35 +3,34 @@
 </h1>
 <div>
     <!-- ADD CUSTOMER DATABASE-->
-     <table mat-table [dataSource]="user" class="mat-elevation-z8">
-    
+     <table mat-table [dataSource]="beneficiary" class="mat-elevation-z8">
+
     <!--CUSTOMER ID-->
     <ng-container matColumnDef="accountNumber">
         <th mat-header-cell *matHeaderCellDef> Account Number </th>
-        <td mat-cell *matCellDef="let user"> Ac: No:{{user.accountNumber}} </td>
+        <td mat-cell *matCellDef="let beneficiary">{{beneficiary.beneficaryAcNo}} </td>
       </ng-container>
-    
-    
+
+
       <!--CUSTOMER FIRST NAME-->
       <ng-container matColumnDef="customerId">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let user"> {{user.fullname}} </td>
+        <td mat-cell *matCellDef="let beneficiary"> {{beneficiary.beneficiaryName}} </td>
       </ng-container>
-    
+
       <!--DELETE BUTTON-->
       <ng-container matColumnDef="delete">
-        <th mat-header-cell *matHeaderCellDef> delete</th>
-        <td mat-cell *matCellDef="let user"> 
-        <button 
-          (click) = "deleteBeneficiary(user.userId, user.beneficaryId)"
-          mat-fab color="primary"
-          aria-label="Example icon button with a delete icon">     
-        </button>         
-        </td>   
+        <th mat-header-cell *matHeaderCellDef> Delete</th>
+        <td mat-cell *matCellDef="let beneficiary">
+        <button
+          (click) = "deleteBeneficiary(beneficiary.beneficaryId)" color="primary">
+          <mat-icon class="trash" color="warn">delete</mat-icon>
+        </button>
+        </td>
       </ng-container>
-    
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-     
-    </table> 
+
+    </table>
     </div>

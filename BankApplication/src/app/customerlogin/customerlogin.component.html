@@ -10,14 +10,14 @@
         <mat-label>Enter Username</mat-label>
         <input required matInput name=username ngModel>
       </mat-form-field>
-      
+
       <br>
 
       <mat-form-field appearance="outline">
         <mat-label>Enter your password</mat-label>
         <input matInput required [type]="hide ? 'password' : 'text'" name=password ngModel>
         <button type='button' mat-icon-button matSuffix
-          (click)="hide = !hide" 
+          (click)="hide = !hide"
           [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -25,6 +25,7 @@
       </mat-form-field>
 
       <br>
+      <button type = 'button' mat-raised-button color="primary" (click) = "register()">Register</button>
       <button mat-raised-button color="primary"
         [disabled]="!loginForm.form.valid">
         Login

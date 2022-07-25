@@ -12,7 +12,7 @@ export class CustomerloginComponent implements OnInit {
 
   hide = true;
 
-  constructor(private http:HttpClient, private router:Router, private userService:UserService) { }
+  constructor(private router:Router, private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -32,5 +32,9 @@ export class CustomerloginComponent implements OnInit {
         alert("Invalid credentials found! Please try again!")
       }
     })
+  }
+
+  register(){
+    this.router.navigate([("/register")]);
   }
 }
