@@ -39,7 +39,7 @@ export class CustomerWHOMIComponent implements OnInit {
     }
 
     moreDetails(aId:any) {
-      alert("inside moredetails() "+localStorage.getItem("cId")+`/account/`+aId);
+      //alert("inside moredetails() "+localStorage.getItem("cId")+`/account/`+aId);
 
       this.router.navigate([('/viewAccount/'+localStorage.getItem("cId")+`/account/`+aId)])
     }

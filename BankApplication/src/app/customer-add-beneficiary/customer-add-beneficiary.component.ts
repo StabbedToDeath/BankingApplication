@@ -20,10 +20,10 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
   ngOnInit(): void {
   }
   createBeneficiary(form:any){
-    //alert("FUCK")
+    //alert("DUCK")
     this.customerService.createBeneficiary(localStorage.getItem("cId"), form).subscribe(res=>{
       if(res){
-        alert("well done")
+        //alert("well done")
       }
     })
   }
