@@ -29,6 +29,7 @@
         <button class = form-button
           mat-raised-button color="primary"
           mat-stroked-button (click)="(transferMoney.value)"
+          (click)= "openSnackBar()"
           [disabled] = "!transferMoney.form.valid">
           Transfer
         </button>

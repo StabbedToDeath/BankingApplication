@@ -34,6 +34,7 @@ export class CustomerWHOMIComponent implements OnInit {
 
         this.account =res;
         console.log(this.account)
+        console.log(localStorage);
       })
     }
 

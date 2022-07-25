@@ -1,7 +1,8 @@
 <h1>
     <mat-toolbar class = toolbar>
 
-      <span><a routerLink="/customerlogin">Home Page</a></span>
+      <span><a routerLink="/customerlogin" ><img class = "piggy" src = "/assets/images/bank-icon.png"></a></span>
+      <span><a routerLink="/customerlogin" >Home Page</a></span>
 
 
         <span class="example-spacer"></span>
@@ -9,7 +10,7 @@
         <button class = toolbar-button mat-raised-button color="primary" (click) = "staffLogin()" *ngIf="!this.userService.isLoggedIn">Staff Login</button>
         <button class=toolbar-button mat-raised-button color="primary" (click)="adminLogin()"*ngIf="!this.userService.isLoggedIn">Admin Login</button>
         <button class = toolbar-button mat-raised-button color="primary" (click) = "logout()" *ngIf="this.userService.isLoggedIn">LogOut</button>
+
     </mat-toolbar>
 </h1>
-
 

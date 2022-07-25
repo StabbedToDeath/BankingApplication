@@ -30,5 +30,8 @@ export class CustomerCreditDebitComponent implements OnInit {
     this._snackBar.open("Success!", "Dismiss");
   }
 
+  //private _snackBar: MatSnackBar
+  //(click)= "openSnackBar()"
+
   
 }

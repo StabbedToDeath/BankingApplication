@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { StaffService } from '../staff.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { StaffService } from '../staff.service';
 })
 export class ApproveDisableComponent implements OnInit {
 
-  constructor(private staffService:StaffService) { }
+  constructor(private _snackBar: MatSnackBar, private staffService:StaffService) { }
 
   displayedColumns:string[] = ['accountNumber', 'accountType', 'accountBalance', 'approved'];
   statement:any;
@@ -38,5 +39,10 @@ export class ApproveDisableComponent implements OnInit {
       {
         this.ngOnInit();
       });
+  }
+
+  openSnackBar()
+  {
+    this._snackBar.open("Approved!", "Dismiss");
   }
 }

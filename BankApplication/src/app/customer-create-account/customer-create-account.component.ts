@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class CustomerCreateAccountComponent implements OnInit {
 product:any;
 customer:any;
 
-  constructor(private customerService:CustomerService) { }
+  constructor(private customerService:CustomerService, private _snackBar: MatSnackBar) { }
   accountType: string[] = ['CA', 'SB'];
 
   ngOnInit(): void {
@@ -25,6 +26,11 @@ customer:any;
       //window.location.reload();
      })
 
+  }
+
+  openSnackBar()
+  {
+    this._snackBar.open("Validation of Account Pending", "Dismiss");
   }
   // this.customerService.createBeneficiary(localStorage.getItem("userId")).subscribe(res=>{
 }

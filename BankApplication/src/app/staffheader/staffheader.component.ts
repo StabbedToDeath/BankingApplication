@@ -28,4 +28,5 @@ export class StaffheaderComponent implements OnInit {
   {
     this.userService.logout();
   }
+
 }

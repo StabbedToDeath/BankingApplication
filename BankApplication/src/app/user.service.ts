@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
@@ -10,7 +11,7 @@ import { catchError, throwError } from 'rxjs';
 })
 export class UserService {
 
-  constructor(private http:HttpClient, private router:Router) { }
+  constructor(private http:HttpClient, private router:Router, private _snackBar: MatSnackBar) { }
 
    public isLoggedIn = false;
   baseUrl:string = "http://localhost:8080/";
@@ -51,6 +52,7 @@ export class UserService {
     }
     localStorage.removeItem('role');
     this.isLoggedIn = false;
+    this._snackBar.open("Logged Out", "Dismiss");
   }
 
   catchAuthError(error:any) {
