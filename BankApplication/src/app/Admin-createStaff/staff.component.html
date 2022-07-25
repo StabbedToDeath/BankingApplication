@@ -29,7 +29,10 @@
 
       <button class = form-button mat-raised-button
         [disabled] = "!staff.form.valid"
-        color="primary">Create Staff
+        color="primary"
+        (click) = "openSnackBar()"
+        >Create Staff
+        
       </button>
 
   </form>

@@ -19,6 +19,7 @@ export class EnableDisableComponent implements OnInit {
 
   
   ngOnInit(): void {
+    //this.ngOnInit();
     this.getAllStaff();
   }
 

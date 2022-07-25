@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-staffheader',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StaffheaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -16,9 +17,9 @@ export class StaffheaderComponent implements OnInit {
   {
 
   }
-  
+
   stafflogout()
   {
-
+    this.userService.logout();
   }
 }

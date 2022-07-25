@@ -1,12 +1,13 @@
 <h1>
     <mat-toolbar class = toolbar>
 
-        <span><a routerLink = "staffhome" >STAFF HEADER Banking Application</a></span>
-        <span><a routerLink = "adminDashboard" >ADMIN</a></span>
+        <span><a routerLink = "staffhome" ><img class = "header-image" src = "assets/images/obama-cube.gif"></a></span>
+        <span><a routerLink = "staffhome" >Staff Dashboard</a></span>
+        <span><a routerLink = "adminDashboard" >Back to HomePage</a></span>
         <span class="example-spacer"></span>
 
-        <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogin()" >Login </button>
-        <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogout()" >LogOut</button>
+        <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogin()" *ngIf="!this.userService.isLoggedIn">Login </button>
+        <button class = toolbar-button mat-raised-button color="primary" (click) = "stafflogout()" *ngIf="this.userService.isLoggedIn">LogOut</button>
     </mat-toolbar>
 </h1>
 

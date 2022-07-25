@@ -11,9 +11,10 @@ import { StaffService } from '../staff.service';
 })
 export class StaffComponent implements OnInit {
 
-
-
   constructor(private adminService:AdminService, private staffService:StaffService, private _snackBar: MatSnackBar, private router:Router) { }
+
+  message:any;
+  durationInSeconds = 3;
 
   ngOnInit(): void {
   }
@@ -23,22 +24,14 @@ export class StaffComponent implements OnInit {
     this.adminService.createStaff(staff).subscribe(res=>
       {
         console.log("nice");
-        this.reloadComponent();
+        window.location.reload();
       });
   }
 
-  openSnackBar(message:any)
+  openSnackBar()
   {
-    this._snackBar.open(message);
-  }
-
-  //Created By ErrorRectified
-  reloadComponent()
-  {
-    let currentUrl = this.router.url;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.router.onSameUrlNavigation = "reload";
-    this.router.navigate([currentUrl]);
+    this.message = "Staff Creation Successful"
+    this._snackBar.open(this.message, "Dismiss");
   }
 
 }

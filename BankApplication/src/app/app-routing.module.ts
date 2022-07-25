@@ -17,6 +17,8 @@ import { CustomerRemoveBeneficiaryComponent } from './customer-remove-beneficiar
 import { CustomerTransferMoneyComponent } from './customer-transfer-money/customer-transfer-money.component';
 import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { StaffloginComponent } from './stafflogin/stafflogin.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 
@@ -101,10 +103,15 @@ path:"customerProfile",
 component:CustomerProfileComponent
 },
 {
+  path: "stafflogin",
+  component:StaffloginComponent
+},
+{
+  path: "adminlogin",
+  component:AdminloginComponent
   path:"login",
   component:LoginComponent
 }
-
 
 ];
 
