@@ -18,10 +18,11 @@ customer:any;
   createAccount(form:any){
 
     console.log(form);
-    //  this.customerService.createAccount(localStorage.getItem("cId"), form).subscribe(res=>{
-    //   this.product = res;
-    //   window.location.reload();
-    //  })
+
+     this.customerService.createAccount(localStorage.getItem("cId"), form).subscribe(res=>{
+      this.product = res;
+      window.location.reload();
+     })
 
   }
   // this.customerService.createBeneficiary(localStorage.getItem("userId")).subscribe(res=>{
