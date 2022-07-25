@@ -1,21 +1,30 @@
-<p>Add beneficiary</p>
+<h1>
+  Add beneficiary
+</h1>
+
 <div>
-<form #beneficiaryForm = "ngForm" (ngSubmit) = createBeneficiary(beneficiaryForm.value)>
+<form  class = form #beneficiaryForm = "ngForm" (ngSubmit) = createBeneficiary(beneficiaryForm.value)>
 
-<mat-form-field class="example-full-width" appearance="fill">
-  <mat-label>Enter Deposit</mat-label>
-  <input matInput name="accountNumber" ngModel>
-</mat-form-field><br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter Deposit</mat-label>
+    <input matInput required name="accountNumber" ngModel>
+  </mat-form-field><br>
 
 
-<p> Select Type of Account</p>
-<mat-radio-group aria-label="Select an option">
-  <mat-radio-button value="1">Savings Account</mat-radio-button>
-  <input matInput name="SB" ngModel>
-  <mat-radio-button value="2">Current Account</mat-radio-button>
-  <input matInput name="CA" ngModel>
-</mat-radio-group>
-<button mat-button color="primary">Submit</button>
+  <h2> Select Type of Account</h2><br>
+  
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1">Savings Account</mat-radio-button>
+    <input matInput name="SB" ngModel>
+    <mat-radio-button value="2">Current Account</mat-radio-button>
+    <input matInput name="CA" ngModel>
+  </mat-radio-group>
+
+  <button class = form-button
+    mat-raised-button color ="primary"
+    [disabled] = "!beneficiaryForm.form.valid">
+    Submit
+  </button>
 </form>
 
 </div>
