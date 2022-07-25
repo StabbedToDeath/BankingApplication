@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -11,7 +12,7 @@ export class RegisterCustomerComponent implements OnInit {
 
   hide = true;
 
-  constructor(private router:Router, private userService:UserService) { }
+  constructor(private _snackBar: MatSnackBar, private router:Router, private userService:UserService) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +21,10 @@ export class RegisterCustomerComponent implements OnInit {
     this.userService.register(form).subscribe(res => {
       this.router.navigate([("/customerlogin")]);
     })
+  }
+
+  openSnackBar()
+  {
+    this._snackBar.open("Registered!", "Dismiss");
   }
 }
