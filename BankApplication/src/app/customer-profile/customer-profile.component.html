@@ -1,21 +1,27 @@
-
+<h1>
+    Customer Profile
+</h1>
 <div>
     
-    <form #updateForm = "ngForm" (ngSubmit) = updateCustomer(updateForm.value)>
-         <!--CUSTOMER ID HAS TO SHOW BUT CANT BE FILLED OUT-->
+    <form class = form #updateForm = "ngForm" (ngSubmit) = updateCustomer(updateForm.value)>
+         
+        <!--CUSTOMER ID HAS TO SHOW BUT CANT BE FILLED OUT-->
         <mat-form-field appearance="fill">
             <mat-label>Customer ID:</mat-label>
-            <input matInput name="username" ngModel>
+            <input matInput required name="username" ngModel>
         </mat-form-field><br>
+
          <!--TO HERE-->
         <mat-form-field appearance="fill">
             <mat-label>FullName:</mat-label>
-            <input matInput name="fullname" ngModel>
+            <input matInput required name="fullname" ngModel>
         </mat-form-field><br>
+
         <mat-form-field appearance="fill">
             <mat-label>Phone:</mat-label>
-            <input matInput name="phone" ngModel>
+            <input matInput required name="phone" ngModel>
         </mat-form-field><br>
+        
         <!-- <mat-form-field appearance="fill">
             <mat-label>PAN</mat-label>
             FIX HERE
@@ -58,7 +64,11 @@
             <!-- <input matInput name="securityA" ngModel>
         </mat-form-field> -->
 
-        <button>Submit</button>
+        <button class = form-button 
+            mat-raised-button color="primary"
+            [disabled] = "!updateForm.form.valid">
+            Go
+        </button>
 
 
     </form>

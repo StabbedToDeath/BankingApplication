@@ -1,20 +1,28 @@
-<p>Create Account Form</p>
+<h1>
+  Create Account Form
+</h1>
+
 <div>
 
-  <form #registerForm = "ngForm" (ngSubmit) = createAccount(registerForm.value)>
-<mat-form-field appearance="fill">
+<form class = form #registerForm = "ngForm" (ngSubmit) = createAccount(registerForm.value)>
+  <mat-form-field appearance="fill">
     <mat-label>Initial Deposit</mat-label>
-    <input matInput name="accountBalance" ngModel>
+    <input matInput required name = "accountBalance" ngModel>
   </mat-form-field>
-
 
   <p> Select Type of Account</p>
   <mat-radio-group aria-label="Select an option" ngModel = "accountType" name = "accountType">
     <mat-radio-button *ngFor="let type of accountType" [value]="type">
       {{type}}&nbsp;
     </mat-radio-button>
-
   </mat-radio-group>
-  <button mat-button color="primary">Submit</button>
+
+  <button
+    class = form-button
+    mat-raised-button color ="primary"
+    [disabled] = "!registerForm.form.valid">
+    Submit
+  </button>
 </form>
+
 </div>

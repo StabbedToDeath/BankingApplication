@@ -1,29 +1,37 @@
+<h1>
+  Transfer to Account
+</h1>
+
 <div>
     <!-- ADD CUSTOMER DATABASE-->
     <form class = form #transferMoney = "ngForm" (ngSubmit) = transfer(transferMoney.value)>
         
         <mat-form-field appearance="fill">
           <mat-label>Account Number</mat-label>
-          <input matInput name = "fromAcc" ngModel>
+          <input matInput required name = "fromAcc" ngModel>
         </mat-form-field><br>
     
         <mat-form-field appearance="fill">
             <mat-label>To Account Number</mat-label>
-            <input matInput name = "toAcc" ngModel>
+            <input matInput name required = "toAcc" ngModel>
         </mat-form-field><br>
     
         <mat-form-field appearance="fill">
             <mat-label>Amount</mat-label>
-            <input matInput name = "amount" ngModel>
+            <input matInput name required = "amount" ngModel>
         </mat-form-field><br>
     
         <mat-form-field appearance="fill">
             <mat-label>Reason</mat-label>
-            <input matInput name = "reason" ngModel>
+            <input matInput name required = "reason" ngModel>
           </mat-form-field><br>
     
-        <button class = form-button mat-raised-button color="primary"
-        mat-stroked-button (click)="(transferMoney.value)">Transfer</button>
+        <button class = form-button
+          mat-raised-button color="primary"
+          mat-stroked-button (click)="(transferMoney.value)"
+          [disabled] = "!transferMoney.form.valid">
+          Transfer
+        </button>
     
       </form>
     </div>

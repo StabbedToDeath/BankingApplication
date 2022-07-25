@@ -5,14 +5,18 @@
 
 <div>
     <form class = form #accNo = "ngForm" (ngSubmit) = getStatement(accNo.value)>
+        
         <mat-form-field appearance="fill">
           <mat-label>Account Number</mat-label>
           <input matInput required name = "accNo" ngModel>
         </mat-form-field>
+        
         <button class = form-button 
           mat-raised-button color="primary"
-          [disabled] = "!accNo.form.valid"
-        >Go</button>
+          [disabled] = "!accNo.form.valid">
+          Go
+        </button>
+        
     </form>
     <br>
 

@@ -1,8 +1,4 @@
 
-
-
-
-
 <!--
 
   add drop down menu that should have all customerID
@@ -10,7 +6,9 @@
 
 -->
 <!--THIS WILL SHOW ALL THE CUSTOMERS ACCOUNTS-->
-
+<h1>
+  View Account Statements
+</h1>
 <div>
     <!-- <mat-form-field appearance="fill">
      <mat-label>Input</mat-label>
@@ -19,62 +17,63 @@
    <mat-form-field></mat-form-field>
      THIS WILL SUBMIT THE TOP-->
 
-     <form class = form #accNo = "ngForm" (ngSubmit) = getAllAccountByCustomerId()>
+  <form class = form #accNo = "ngForm" (ngSubmit) = getAllAccountByCustomerId()>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Enter: Account Number</mat-label>
+      <input matInput name required = "accNo" ngModel>
+    </mat-form-field>
+
+    <button class = form-button mat-raised-button
+    color="primary"
+    [disabled] = "!accNo.form.valid">
+    Go
+  </button>
+  
+  </form>
+  <br>
 
 
+  <table mat-table [dataSource]= "statement" class="mat-elevation-z8">
 
 
-       <mat-form-field appearance="fill">
-         <mat-label>Enter: Account Number</mat-label>
-         <input matInput name = "accNo" ngModel>
-       </mat-form-field>
-       <button class = form-button mat-raised-button color="primary">Go</button>
-   </form>
-   <br>
-
-
-    <table mat-table [dataSource]= "statement" class="mat-elevation-z8">
-
-
-     <ng-container matColumnDef="stmtId">
-       <th mat-header-cell *matHeaderCellDef> Date </th>
-       <td mat-cell *matCellDef="let statement"> Ac: No:{{statement.stmtId}} </td>
-     </ng-container>
-   <!--DATE-->
+    <ng-container matColumnDef="stmtId">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let statement"> Ac: No:{{statement.stmtId}} </td>
+    </ng-container>
+    <!--DATE-->
     <ng-container matColumnDef="Date">
-       <th mat-header-cell *matHeaderCellDef> Date </th>
-       <td mat-cell *matCellDef="let statement"> {{statement.date}} </td>
-     </ng-container>
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let statement"> {{statement.date}} </td>
+    </ng-container>
 
 
-     <!--REFERENCE-->
-      <ng-container matColumnDef="Reference">
-       <th mat-header-cell *matHeaderCellDef> Reference </th>
-       <td mat-cell *matCellDef="let statement"> {{statement.reference}} </td>
-     </ng-container>
+    <!--REFERENCE-->
+    <ng-container matColumnDef="Reference">
+      <th mat-header-cell *matHeaderCellDef> Reference </th>
+      <td mat-cell *matCellDef="let statement"> {{statement.reference}} </td>
+    </ng-container>
 
-     <!--CREDIT OR DEBIT-->
-     <ng-container matColumnDef="Amount">
-       <th mat-header-cell *matHeaderCellDef> Amount </th>
-       <td mat-cell *matCellDef="let statement"> {{statement.amount}} </td>
-     </ng-container>
-     <ng-container matColumnDef="Cr,Db">
-       <th mat-header-cell *matHeaderCellDef> Cr/Db </th>
-       <td mat-cell *matCellDef="let statement"> {{statement.type}} </td>
-     </ng-container>
+    <!--CREDIT OR DEBIT-->
+    <ng-container matColumnDef="Amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let statement"> {{statement.amount}} </td>
+    </ng-container>
 
+    <ng-container matColumnDef="Cr,Db">
+      <th mat-header-cell *matHeaderCellDef> Cr/Db </th>
+      <td mat-cell *matCellDef="let statement"> {{statement.type}} </td>
+    </ng-container>
 
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
+  </table>
 
+    <mat-paginator [length]="100"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page">
+    </mat-paginator>
 
-     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-   </table>
-
-            <mat-paginator [length]="100"
-           [pageSize]="10"
-           [pageSizeOptions]="[5, 10, 25, 100]"
-           aria-label="Select page">
-           </mat-paginator>
-
-         </div>
+</div>

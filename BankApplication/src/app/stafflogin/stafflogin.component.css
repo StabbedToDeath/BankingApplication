@@ -1,6 +1,11 @@
 div {
-  margin-left: 800px;
-  margin-top: 150px;
+  /* margin-left: 800px;
+  margin-top: 150px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16px;
+  padding: 16px;
 }
 
 button {
@@ -8,7 +13,79 @@ button {
 }
 
 h1 {
-  margin-left: 725px;
-  margin-top: 100px;
+  /* margin-left: 725px;
+  margin-top: 100px; */
   color: blueviolet;
 }
+
+
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.form-button
+{
+  /* margin: 5px; */
+  /* padding: 5px; */
+  border-radius: 5px;
+}
+
+.form
+{
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.card
+{
+  max-width: 400px;
+  margin-bottom: 8px;
+}
+
+.header-title
+{
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 20px;
+  color: black;
+  border: black;
+  border-style: solid;
+  border-width: 2px;
+}
+
+table {
+  border-collapse: collapse;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+table td {
+  padding: 20px;
+}
+
+table th{
+  padding: 20px;
+}
+
+table thead td {
+  background-color: #54585d;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 13px;
+  border: 1px solid #54585d;
+  
+}
+
+table tbody td {
+  color: #636363;
+  border: 1px solid #dddfe1;
+}
+
+table tbody tr {
+  background-color: #f9fafb;
+}
+table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+
