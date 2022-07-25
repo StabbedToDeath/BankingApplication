@@ -17,6 +17,8 @@ import { CustomerRemoveBeneficiaryComponent } from './customer-remove-beneficiar
 import { CustomerTransferMoneyComponent } from './customer-transfer-money/customer-transfer-money.component';
 import { CustomerViewStatementComponent } from './customer-view-statement/customer-view-statement.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { StaffloginComponent } from './stafflogin/stafflogin.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 
 const routes: Routes = [
@@ -53,7 +55,7 @@ const routes: Routes = [
 // *********************************************************************
 // *********************************************************************
 // *********************************************************************
-// *********************************************************************  
+// *********************************************************************
   {
     path:'viewstaff',         //Get all Staff + enable disable
     component:EnableDisableComponent
@@ -107,8 +109,15 @@ const routes: Routes = [
 {
 path:"customerProfile",
 component:CustomerProfileComponent
+},
+{
+  path: "stafflogin",
+  component:StaffloginComponent
+},
+{
+  path: "adminlogin",
+  component:AdminloginComponent
 }
-
 
 ];
 

@@ -24,7 +24,7 @@ export class StaffComponent implements OnInit {
     this.adminService.createStaff(staff).subscribe(res=>
       {
         console.log("nice");
-        //this.reloadComponent();
+        window.location.reload();
       });
   }
 
@@ -33,14 +33,5 @@ export class StaffComponent implements OnInit {
     this.message = "Staff Creation Successful"
     this._snackBar.open(this.message, "Dismiss");
   }
-
-  //Created By ErrorRectified
-  // reloadComponent()
-  // {
-  //   let currentUrl = this.router.url;
-  //   this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  //   this.router.onSameUrlNavigation = "reload";
-  //   this.router.navigate([currentUrl]);
-  // }
 
 }

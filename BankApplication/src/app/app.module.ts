@@ -42,6 +42,8 @@ import { CustomerheaderComponent } from './customerheader/customerheader.compone
 import { CustomerRemoveBeneficiaryComponent } from './customer-remove-beneficiary/customer-remove-beneficiary.component';
 import { CustomerWHOMIComponent } from './customer-whomi/customer-whomi.component';
 import { ViewAccountComponent } from './view-account/view-account.component';
+import { StaffloginComponent } from './stafflogin/stafflogin.component';
+import { AdminloginComponent } from './adminlogin/adminlogin.component';
 
 
 
@@ -69,6 +71,8 @@ import { ViewAccountComponent } from './view-account/view-account.component';
     CustomerRemoveBeneficiaryComponent,
     CustomerWHOMIComponent,
     ViewAccountComponent,
+    StaffloginComponent,
+    AdminloginComponent,
 
   ],
   imports: [
@@ -95,8 +99,8 @@ import { ViewAccountComponent } from './view-account/view-account.component';
     MatSidenavModule,
     MatRadioModule,
     MatSelectModule,
-    
-    
+
+
 
   ],
   providers: [],

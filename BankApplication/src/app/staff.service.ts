@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StaffService {
+
 
   baseurl:string = "http://localhost:8080/api/staff/";
 
@@ -29,7 +31,7 @@ export class StaffService {
   {
     return this.http.get(`${this.baseurl}account/` + accNo);
   }
-  
+
   getNotApprovedBens()
   {
     return this.http.get(`${this.baseurl}beneficiary`);
@@ -47,7 +49,7 @@ export class StaffService {
 
   approveAccount(account:any)  //Fields
   {
-    
+
     return this.http.put(`${this.baseurl}accounts/approve`, account);
   }
 
@@ -56,14 +58,10 @@ export class StaffService {
     return this.http.put(`${this.baseurl}transfer`, transaction, {responseType: "text"});
   }
 
-  authenticate()  //FIELDS
-  {
-    return this.http.get(`${this.baseurl}authenticate`);
-  }
 
   // getAllStaffService(): Observable<Staff[]>{
   //   console.log('getAllStaffService is invoke..')
-    
+
   //   return this.http.get<Staff[]>("http://localhost:8080/api/admin/getAllStaff");
   // }
 }
