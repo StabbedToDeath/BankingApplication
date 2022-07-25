@@ -46,7 +46,7 @@ export class CustomerService {
     return this.http.get(`${this.baseurl}`+cId+`/account/`+aId);
   }
   createBeneficiary(cId:any, form:any){
-    return this.http.post(`${this.baseurl}`+cId+`/beneficiary`, form);
+    return this.http.post(`${this.baseurl}`+cId+`/beneficiary`, form, {responseType:"text"});
   }
   getBeneficiary(cId:any){
     return this.http.get(`${this.baseurl}`+cId+`/beneficiary`);

@@ -13,6 +13,7 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
 
   product:any;
   user:any;
+  accountType: string[] = ['CA', 'SB'];
   constructor(private http: HttpClient, private customerService:CustomerService, private router:Router) { }
 
   ngOnInit(): void {
