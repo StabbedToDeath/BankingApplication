@@ -16,7 +16,7 @@ export class CustomerWHOMIComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllAccountByCustomerId(1);
+    this.getAllAccountByCustomerId();
 
 
     //  this.customerService.getAllAccountByCustomerId(1).subscribe(res=>{
@@ -24,27 +24,24 @@ export class CustomerWHOMIComponent implements OnInit {
     //   alert()
     //   this.account= res;
       }
-  
+
      //get all accounts by id
-     
-    
-  
-    getAllAccountByCustomerId(cId:any){
-      this.customerService.getAllAccountByCustomerId(1).subscribe(res=>{
-        
+
+
+
+    getAllAccountByCustomerId(){
+      this.customerService.getAllAccountByCustomerId(localStorage.getItem("cId")).subscribe(res=>{
+
         this.account =res;
         console.log(this.account)
       })
     }
-  
-    moreDetails(cId:any, aId:any) {
-      alert("inside moredetails() "+cId+`/account/`+aId);
-  
-      this.router.navigate([('/viewAccount/'+cId+`/account/`+aId)])
+
+    moreDetails(aId:any) {
+      alert("inside moredetails() "+localStorage.getItem("cId")+`/account/`+aId);
+
+      this.router.navigate([('/viewAccount/'+localStorage.getItem("cId")+`/account/`+aId)])
     }
   }
 
-function cId(cId: any) {
-  throw new Error('Function not implemented.');
-}
 

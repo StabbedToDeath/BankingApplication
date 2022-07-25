@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./customer-add-beneficiary.component.css']
 })
 export class CustomerAddBeneficiaryComponent implements OnInit {
-  
+
   product:any;
   user:any;
   constructor(private http: HttpClient, private customerService:CustomerService, private router:Router) { }
@@ -18,8 +18,8 @@ export class CustomerAddBeneficiaryComponent implements OnInit {
   ngOnInit(): void {
   }
   createBeneficiary(form:any){
-    alert("FUCK")
-    this.customerService.createBeneficiary(localStorage.getItem("userId"), form).subscribe(res=>{
+    //alert("FUCK")
+    this.customerService.createBeneficiary(localStorage.getItem("cId"), form).subscribe(res=>{
       if(res){
         alert("well done")
       }

@@ -13,16 +13,17 @@ export class UserService {
   constructor(private http:HttpClient, private router:Router) { }
 
    public isLoggedIn = false;
+  baseUrl:string = "http://localhost:8080/";
+
 
   authenticate(form:any)  //FIELDS
   {
-    return this.http.post("http://localhost:8080/authenticate", form).pipe(
+    return this.http.post(`${this.baseUrl}authenticate`, form).pipe(
       catchError(err => this.catchAuthError(err)),
     );
-  public isLoggedIn = false;
-  baseUrl:string = "http://localhost:8080/";
+  }
 
-  constructor(private http:HttpClient) { }
+
 
   generateToken(form:any) {
     return this.http.post(`${this.baseUrl}`+"authenticate", form);
@@ -41,9 +42,12 @@ export class UserService {
     if(localStorage.getItem('role') == "Staff") {
       alert("Youve been logged out!!")
       this.router.navigate([("/stafflogin")])
-    } else;if (localStorage.getItem('role') == "Admin") {
+    } else if (localStorage.getItem('role') == "Admin") {
       this.router.navigate([("/adminlogin")])
       alert("Youve been logged out!!")
+    } else if (localStorage.getItem('role') == "Customer"){
+      this.router.navigate([("/customerlogin")])
+      localStorage.removeItem("cId");
     }
     localStorage.removeItem('role');
     this.isLoggedIn = false;
@@ -61,5 +65,9 @@ export class UserService {
     }
 
     return throwError(error);
+  }
+
+  register(form:any) {
+    return this.http.post(`${this.baseUrl}api/customer/register`, form);
   }
 }

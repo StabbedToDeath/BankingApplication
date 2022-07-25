@@ -13,26 +13,12 @@ export class ViewAccountComponent implements OnInit {
   constructor(private route:ActivatedRoute, private customerService:CustomerService, private router:Router) { }
 
   ngOnInit(): void {
-    // this.getAccountById
-    this.route.paramMap.subscribe(res=>{
-      var id = res.get("id")
-      this.customerService.getAccountById(1, 1).subscribe(res=>{
-        alert("no")
-        this.users= res;
-  
+
+    this.route.paramMap.subscribe(res => {
+      let id = res.get("aId");
+      this.customerService.getAccountById(localStorage.getItem("cId"), id).subscribe(res => {
+        this.users = res;
+      })
     })
-
-  })
-
-  
-    }
-    // getAccountById(form:any){
-    //   this.customerService.getAccountById(1, form).subscribe(res=>{
-    //     this.users=res;
-    //   })
-    // }
-  
-    goHome(){
-      this.router.navigate([('customerWHOAMI')])
-    }
+  }
 }

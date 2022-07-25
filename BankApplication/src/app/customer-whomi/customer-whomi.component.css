@@ -1,4 +1,5 @@
 .grid {
+  margin-top: 50px;
     display: grid;
     grid-template-columns: 1fr 500px 1fr;
     grid-template-rows: 100px 200px;

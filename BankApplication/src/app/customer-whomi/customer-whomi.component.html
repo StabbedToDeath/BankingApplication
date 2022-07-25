@@ -1,27 +1,16 @@
 
 <div class = "grid">
   <mat-card class="example-card" *ngFor="let account of account">
-<!--   
-  {{user.userId}}
-  {{user.fullname}}
-{{user.accountType}}
-{{user.password}}
-{{user.creationDate}}
-{{user.custName}} -->
   <mat-card-title-group>
     <mat-card-title> Acc No: {{account.accountNumber}}</mat-card-title>
-    <!-- <mat-card-title> User Id: {{account.userId}}</mat-card-title><br> -->
-    <mat-card-subtitle> Date of Publication: 
+    <mat-card-subtitle> Date of Publication:
       {{account.creationDate}}</mat-card-subtitle><br>
     <mat-card-subtitle>Name: {{account.custName}}</mat-card-subtitle><br>
-    <mat-card-subtitle>Name: {{account.username}}</mat-card-subtitle><br>
     <mat-card-subtitle>Phone Number: {{account.phone}}</mat-card-subtitle>
     <mat-card-subtitle>Account Balance: {{account.accountBalance}}</mat-card-subtitle>
-    
-    <img mat-card-sm-image src="\assets\images\amungus.jpg" >
-    <a (click) = "moreDetails(1, account.accountNumber)" routerLink = "active">More Details</a>
 
-    <!-- account.userId -->
+    <a (click) = "moreDetails(account.accountNumber)" routerLink = "active">More Details</a>
+
   </mat-card-title-group>
   <mat-card-content>
 

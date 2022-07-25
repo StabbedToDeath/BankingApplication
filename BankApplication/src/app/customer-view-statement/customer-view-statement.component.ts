@@ -17,11 +17,10 @@ export class CustomerViewStatementComponent implements OnInit {
   constructor(private customerService:CustomerService ) { }
 
   ngOnInit(): void {
-    this.customerService.getCustomerById(1).subscribe(res=>{
-      alert("no")
+    this.customerService.getCustomerById(localStorage.getItem("cId")).subscribe(res=>{
       this.product = res;})
 
-  
+
 }
 transfer(form:any)
 {
@@ -31,14 +30,13 @@ transfer(form:any)
 
       this.account = res;
       this.statement = this.account.statement;
-      this.ngOnInit
+      this.ngOnInit()
     });
 }
 
     //view statment
-    getAllAccountByCustomerId(cId:any){
-      //hard coding cId to one
-      this.customerService.getAllAccountByCustomerId(1).subscribe(res=>{
+    getAllAccountByCustomerId(){
+      this.customerService.getAllAccountByCustomerId(localStorage.getItem("cId")).subscribe(res=>{
         this.statement = res;
       })
 }

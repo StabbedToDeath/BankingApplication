@@ -11,23 +11,18 @@ product:any;
 customer:any;
 
   constructor(private customerService:CustomerService) { }
+  accountType: string[] = ['CA', 'SB'];
 
   ngOnInit(): void {
   }
   createAccount(form:any){
-    alert("FUCK")
 
-    // this.customerService.createAccount(localStorage.getItem("userId"), form).subscribe(res=>{
-    //   if(res){
-    //     alert("well done")
-    //   }
+    console.log(form);
+    //  this.customerService.createAccount(localStorage.getItem("cId"), form).subscribe(res=>{
+    //   this.product = res;
+    //   window.location.reload();
+    //  })
 
-    //change cId in localStorage.getItem() to login token and it should work
-     this.customerService.createAccount(1, form).subscribe(res=>{
-      this.product = res;
-     }
-    )
-    
   }
   // this.customerService.createBeneficiary(localStorage.getItem("userId")).subscribe(res=>{
 }

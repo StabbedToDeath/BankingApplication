@@ -45,6 +45,8 @@ import { ViewAccountComponent } from './view-account/view-account.component';
 import { StaffloginComponent } from './stafflogin/stafflogin.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { LoginComponent } from './login/login.component';
+import { CustomerloginComponent } from './customerlogin/customerlogin.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
 
 
 
@@ -72,9 +74,11 @@ import { LoginComponent } from './login/login.component';
     CustomerRemoveBeneficiaryComponent,
     CustomerWHOMIComponent,
     ViewAccountComponent,
-    StaffloginComponent,
     AdminloginComponent,
     LoginComponent,
+    StaffloginComponent,
+    CustomerloginComponent,
+    RegisterCustomerComponent,
 
   ],
   imports: [

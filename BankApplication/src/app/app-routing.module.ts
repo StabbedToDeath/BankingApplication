@@ -21,6 +21,9 @@ import { StaffloginComponent } from './stafflogin/stafflogin.component';
 import { AdminloginComponent } from './adminlogin/adminlogin.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
+import { CustomerloginComponent } from './customerlogin/customerlogin.component';
+import { RegisterCustomerComponent } from './register-customer/register-customer.component';
+import { ViewAccountComponent } from './view-account/view-account.component';
 
 const routes: Routes = [
   {
@@ -109,8 +112,18 @@ component:CustomerProfileComponent
 {
   path: "adminlogin",
   component:AdminloginComponent
-  path:"login",
-  component:LoginComponent
+},
+{
+  path:"customerlogin",
+  component:CustomerloginComponent
+},
+{
+  path: "register",
+  component: RegisterCustomerComponent
+},
+{
+  path:"viewAccount/:cId/account/:aId",
+  component:ViewAccountComponent
 }
 
 ];

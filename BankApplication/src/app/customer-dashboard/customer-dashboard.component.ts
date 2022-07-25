@@ -5,7 +5,7 @@ import { CustomerService } from '../customer.service';
 
 
 @Component({
-  selector: 'app-customer-dashboard', 
+  selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
   styleUrls: ['./customer-dashboard.component.css']
 
@@ -29,9 +29,8 @@ export class CustomerDashboardComponent implements OnInit {
     })
   }
 
-  getCustomerById(cId:any){
-    //Change the 1 to cId when you grow a pair
-    this.customerService.getCustomerById(1).subscribe(res=>{
+  getCustomerById(){
+    this.customerService.getCustomerById(localStorage.getItem("cId")).subscribe(res=>{
       this.product = res;
     })
   }

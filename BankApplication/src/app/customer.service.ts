@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CustomerService {
-  
+
   baseurl:string = "http://localhost:8080/api/customer/";
   constructor(private http:HttpClient) { }
 
@@ -23,7 +23,7 @@ export class CustomerService {
   //   return this.http.post(`${this.baseurl}`+cId+`/account`, form);
   // }
   createAccount(cId:any, form:any){
-    return this.http.post(`${this.baseurl}account`, form);
+    return this.http.post(`${this.baseurl}`+cId+"/account", form);
   }
 
   registerCustomer(customer:any){
@@ -39,7 +39,7 @@ export class CustomerService {
     return this.http.get(`${this.baseurl}`+cId);
   }
   updateCustomer(cId:any){
-    return this.http.put(`${this.baseurl}1`, cId);
+    return this.http.put(`${this.baseurl}`, cId);
   }
 
   getAccountById(cId:any, aId:any){
@@ -49,7 +49,7 @@ export class CustomerService {
     return this.http.post(`${this.baseurl}`+cId+`/beneficiary`, form);
   }
   getBeneficiary(cId:any){
-return this.http.post(`${this.baseurl}`,cId+`/beneficiary`);
+    return this.http.get(`${this.baseurl}`+cId+`/beneficiary`);
 
   }
   deleteBeneficiary(cId:any, bId:any){
@@ -59,7 +59,7 @@ return this.http.post(`${this.baseurl}`,cId+`/beneficiary`);
   //   return this.http.delete(`${this.baseurl}beneficiary/`);
   // }
   transfer(transaction:any){
-    return this.http.put(`${this.baseurl}transfer"`, transaction);
+    return this.http.put(`${this.baseurl}transfer`, transaction);
   }
   authenticate(customer:any){
     return this.http.post(`${this.baseurl}authenticate`, customer);
