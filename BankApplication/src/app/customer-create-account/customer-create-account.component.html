@@ -9,11 +9,11 @@
 
 
   <p> Select Type of Account</p>
-  <mat-radio-group aria-label="Select an option">
-    <mat-radio-button value="SB">Savings Account</mat-radio-button>
-    <input matInput name="SB" ngModel>
-    <mat-radio-button value="CA">Current Account</mat-radio-button>
-    <input matInput name="CA" ngModel>
+  <mat-radio-group aria-label="Select an option" ngModel = "accountType" name = "accountType">
+    <mat-radio-button *ngFor="let type of accountType" [value]="type">
+      {{type}}&nbsp;
+    </mat-radio-button>
+
   </mat-radio-group>
   <button mat-button color="primary">Submit</button>
 </form>
