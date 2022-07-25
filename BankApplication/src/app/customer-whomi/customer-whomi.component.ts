@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { CustomerService } from '../customer.service';
 
@@ -10,37 +10,39 @@ import { CustomerService } from '../customer.service';
 })
 export class CustomerWHOMIComponent implements OnInit {
   user:any;
-  product:any;
+  account:any;
 
-  constructor(private customerService:CustomerService, private route:ActivatedRoute) { }
+  constructor(private customerService:CustomerService, private route:ActivatedRoute, private router:Router) { }
 
 
   ngOnInit(): void {
+    this.getAllAccountByCustomerId(1);
 
 
-    // this.route.paramMap.subscribe(res=> {
-    //   alert("huh"+res.get("userId"))
-    //   var cId = res.get("cId");
-    //   this.customerService.getCustomerById(1).subscribe(res =>{
-    //     this.product = res;
-    //   })
-    // })
-   this.customerService.getCustomerById(1).subscribe(res=>{
-    alert("no")
-    this.user = res;
-   })
-
-   //get all accounts by id
-   
+    //  this.customerService.getAllAccountByCustomerId(1).subscribe(res=>{
+    //   alert("no")
+    //   alert()
+    //   this.account= res;
+      }
+  
+     //get all accounts by id
+     
+    
+  
+    getAllAccountByCustomerId(cId:any){
+      this.customerService.getAllAccountByCustomerId(1).subscribe(res=>{
+        
+        this.account =res;
+        console.log(this.account)
+      })
+    }
+  
+    moreDetails(cId:any, aId:any) {
+      alert("inside moredetails() "+cId+`/account/`+aId);
+  
+      this.router.navigate([('/viewAccount/'+cId+`/account/`+aId)])
+    }
   }
-  // getCustomerById(cId:any){
-  //   this.customerService.getCustomerById(1).subscribe(res=>{
-  //     this.accounts = res;
-  //     this.ngOnInit
-
-  //   })
-  }
-
 
 function cId(cId: any) {
   throw new Error('Function not implemented.');

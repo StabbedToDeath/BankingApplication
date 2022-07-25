@@ -1,6 +1,23 @@
-<p>view-account works!</p>
-{{account.accountNumber}}
-{{account.accountType}}
-{{account.accountBalance}}
-{{account.creationDate}}
-{{account.custName}}
+
+<div class = "grid">
+    <mat-card class="example-card">
+        <mat-card-title-group>
+            <mat-card-title> Acc No: {{users.accountNumber}}</mat-card-title> 
+            <mat-card-title> User Id: {{users.userId}}</mat-card-title><br>
+            <mat-card-subtitle> Date of Publication: {{users.creationDate}}</mat-card-subtitle><br>
+            <mat-card-subtitle>Name: {{users.custName}}</mat-card-subtitle><br>
+            <mat-card-subtitle>Name: {{users.username}}</mat-card-subtitle><br>
+            <mat-card-subtitle>Phone Number: {{users.phone}}</mat-card-subtitle>
+            <mat-card-subtitle>Account Balance: {{users.accountBalance}}</mat-card-subtitle>
+            
+            <img mat-card-sm-image src="\assets\images\amungus.jpg" >
+            <a (click) = "goHome" routerLink = "active">home</a>
+          </mat-card-title-group>
+          <mat-card-content>
+        
+          </mat-card-content>
+        </mat-card>
+        
+        
+        
+        </div>
